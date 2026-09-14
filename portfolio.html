@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Technolife Group - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/custom.css" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#f3f3f8",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#303030",
+                        "on-tertiary-fixed": "#1a1c1f",
+                        "primary-fixed-dim": "#ffb3b3",
+                        "surface-variant": "#e4e2e2",
+                        "secondary-fixed": "#e5e2e1",
+                        "outline-variant": "#e6bdbc",
+                        "on-primary-fixed": "#40000a",
+                        "background": "#fbf9f8",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c1c",
+                        "tertiary": "#55575b",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#1b1c1c",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "inverse-primary": "#ffb3b3",
+                        "error": "#ba1a1a",
+                        "primary": "#b1002c",
+                        "tertiary-fixed-dim": "#c6c6cb",
+                        "surface-container": "#efeded",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary-container": "#656464",
+                        "surface": "#fbf9f8",
+                        "pure-black": "#000000",
+                        "surface-container-high": "#eae8e7",
+                        "on-tertiary-fixed-variant": "#45474b",
+                        "on-surface-variant": "#5c3f3f",
+                        "deep-crimson": "#A32026",
+                        "tertiary-fixed": "#e2e2e7",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#920022",
+                        "secondary": "#5f5e5e",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#e5e2e1",
+                        "on-primary-container": "#fff1f0",
+                        "primary-fixed": "#ffdad9",
+                        "inverse-on-surface": "#f2f0f0",
+                        "primary-container": "#dc143c",
+                        "surface-white": "#FFFFFF",
+                        "outline": "#916f6e",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-bright": "#fbf9f8",
+                        "surface-dim": "#dbd9d9",
+                        "tertiary-container": "#6e6f74",
+                        "surface-tint": "#bf0030",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#e4e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "base": "8px",
+                        "container-max-width": "1280px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Poppins"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+                        "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pt-24">
+    <!-- TopNavBar (6 Items with Nested Dropdowns) -->
+    <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm border-b border-white/40 dark:border-white/10 smooth-transition">
+        <div class="flex justify-between items-center max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-4">
+            <!-- 1. Brand Logo / Nama (Home Link) -->
+            <a href="index.html" class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed-dim hover:scale-102 transition-transform">
+                Technolife Group
+            </a>
+
+            <!-- Desktop Navigation: Exactly 6 Core Navbar Elements -->
+            <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+                <!-- 1. Home -->
+                <a href="index.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Home</a>
+
+                <!-- 2. Profile (Dropdown) -->
+                <div class="nav-dropdown-wrapper">
+                    <button type="button" class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md py-2 flex items-center gap-1 outline-none">
+                        <span>Profile</span>
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="history.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">history_edu</span>
+                            <span>Profil dan Sejarah</span>
+                        </a>
+                        <a href="org-structure.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">corporate_fare</span>
+                            <span>Struktur Perusahaan</span>
+                        </a>
+                        <a href="portfolio.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-primary font-semibold hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">cases</span>
+                            <span>Portfolio Proyek</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Partnership -->
+                <a href="partnerships.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Partnership</a>
+
+                <!-- 4. Product and Service (Nested Dropdown inside Dropdown) -->
+                <div class="nav-dropdown-wrapper">
+                    <a href="services.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 flex items-center gap-1 font-semibold outline-none">
+                        <span>Product &amp; Services</span>
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <!-- Sub-dropdown 1: Fasilitas dan Service -->
+                        <div class="nested-dropdown-wrapper">
+                            <div class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-on-surface hover:text-primary hover:bg-surface-container cursor-pointer transition-colors group">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base text-primary">domain</span>
+                                    <span>Fasilitas dan Service</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                            </div>
+                            <!-- Flyout List: 10 Items -->
+                            <div class="nested-dropdown-menu">
+                                <div class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-primary border-b border-surface-variant mb-1">Fasilitas &amp; Spaces</div>
+                                <a href="services.html#needs" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Needs</a>
+                                <a href="services.html#studyspace" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Study Space</a>
+                                <a href="services.html#technobillyard" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Technobillyard</a>
+                                <a href="services.html#ballroom" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Ballroom</a>
+                                <a href="services.html#trainingcenter" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Training Center</a>
+                                <a href="services.html#technofit" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Techno Fit</a>
+                                <a href="services.html#decoin" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Deco.in</a>
+                                <a href="services.html#meetingroom" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Meeting Room</a>
+                                <a href="services.html#coworking" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Coworking</a>
+                                <a href="services.html#virtualoffice" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Virtual Office</a>
+                            </div>
+                        </div>
+
+                        <!-- Sub-dropdown 2: Food and Beverage -->
+                        <div class="nested-dropdown-wrapper">
+                            <div class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-on-surface hover:text-primary hover:bg-surface-container cursor-pointer transition-colors group">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base text-primary">restaurant</span>
+                                    <span>Food &amp; Beverage</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                            </div>
+                            <!-- Flyout List: 7 Items -->
+                            <div class="nested-dropdown-menu">
+                                <div class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-primary border-b border-surface-variant mb-1">Culinary &amp; Dining</div>
+                                <a href="services.html#cateringbrownsugar" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Catering Brown Sugar</a>
+                                <a href="services.html#kallsmaison" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Kall's Maison</a>
+                                <a href="services.html#skywatchresto" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Skywatch Resto</a>
+                                <a href="services.html#technocoffee" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Techno Coffee</a>
+                                <a href="services.html#frozenfood" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Frozen Food</a>
+                                <a href="services.html#santapin" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Santapin</a>
+                                <a href="services.html#gampangenak" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Gampang Enak</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Karir -->
+                <a href="careers.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Karir</a>
+
+                <!-- 6. Kontak -->
+                <button type="button" data-open-contact class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Kontak</button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button type="button" data-open-search class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container" title="Quick Search">
+                    <span class="material-symbols-outlined text-[22px]">search</span>
+                </button>
+                <button type="button" data-open-login class="hidden md:block font-label-md text-label-md text-on-surface hover:text-primary transition-colors">Log In</button>
+                <button type="button" data-open-contact class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-xl hover:scale-[1.02] hover:bg-deep-crimson transition-all duration-300 shadow-sm">Contact Us</button>
+                <button type="button" data-mobile-menu-toggle class="lg:hidden text-on-surface p-1.5 rounded-lg">
+                    <span class="material-symbols-outlined text-[26px]">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Backdrop & Drawer -->
+    <div id="mobileNavBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="mobileNavDrawer" class="fixed top-0 left-0 h-full w-[310px] bg-surface-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between p-6 overflow-y-auto">
+        <div>
+            <div class="flex items-center justify-between pb-5 border-b border-surface-variant">
+                <a href="index.html" class="font-display-lg text-xl font-bold text-primary">Technolife Group</a>
+                <button id="closeMobileNav" class="text-secondary hover:text-on-surface p-1.5 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-1.5 mt-5">
+                <!-- 1. Home -->
+                <a href="index.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Home</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">home</span>
+                </a>
+
+                <!-- 2. Profile (Accordion) -->
+                <div class="accordion-item rounded-xl border border-transparent hover:border-surface-variant accordion-open">
+                    <button type="button" data-accordion-toggle class="w-full flex items-center justify-between py-2.5 px-3 rounded-xl font-semibold text-primary bg-primary/5 transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base text-primary">person</span>
+                            <span>Profile</span>
+                        </span>
+                        <span class="material-symbols-outlined text-base transition-transform accordion-icon text-primary rotate-180">expand_more</span>
+                    </button>
+                    <div class="accordion-content pl-4 pr-2 pb-2 space-y-1">
+                        <a href="history.html" class="block py-2 px-3 text-xs text-secondary hover:text-primary rounded-lg hover:bg-surface-container transition-colors">Profil dan Sejarah</a>
+                        <a href="org-structure.html" class="block py-2 px-3 text-xs text-secondary hover:text-primary rounded-lg hover:bg-surface-container transition-colors">Struktur Perusahaan</a>
+                        <a href="portfolio.html" class="block py-2 px-3 text-xs font-bold text-primary rounded-lg bg-primary/10 transition-colors">Portfolio Proyek</a>
+                    </div>
+                </div>
+
+                <!-- 3. Partnership -->
+                <a href="partnerships.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Partnership</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">handshake</span>
+                </a>
+
+                <!-- 4. Product and Service (Accordion with Sub-Accordions) -->
+                <div class="accordion-item rounded-xl border border-transparent hover:border-surface-variant">
+                    <button type="button" data-accordion-toggle class="w-full flex items-center justify-between py-2.5 px-3 rounded-xl font-semibold text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                        <span class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base text-primary">category</span>
+                            <span>Product &amp; Services</span>
+                        </span>
+                        <span class="material-symbols-outlined text-base transition-transform accordion-icon text-secondary">expand_more</span>
+                    </button>
+                    <div class="accordion-content pl-2 pr-2 pb-2 space-y-2">
+                        <!-- Sub-Accordion: Fasilitas dan Service -->
+                        <div class="accordion-item rounded-lg bg-surface-container-low p-1.5">
+                            <button type="button" data-accordion-toggle class="w-full flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-bold text-on-surface hover:text-primary">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm text-primary">domain</span>
+                                    <span>Fasilitas &amp; Service</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm transition-transform accordion-icon text-secondary">expand_more</span>
+                            </button>
+                            <div class="accordion-content pl-4 pr-1 pb-1 space-y-1">
+                                <a href="services.html#needs" class="block py-1 text-xs text-secondary hover:text-primary">Needs</a>
+                                <a href="services.html#studyspace" class="block py-1 text-xs text-secondary hover:text-primary">Study Space</a>
+                                <a href="services.html#technobillyard" class="block py-1 text-xs text-secondary hover:text-primary">Technobillyard</a>
+                                <a href="services.html#ballroom" class="block py-1 text-xs text-secondary hover:text-primary">Ballroom</a>
+                                <a href="services.html#trainingcenter" class="block py-1 text-xs text-secondary hover:text-primary">Training Center</a>
+                                <a href="services.html#technofit" class="block py-1 text-xs text-secondary hover:text-primary">Techno Fit</a>
+                                <a href="services.html#decoin" class="block py-1 text-xs text-secondary hover:text-primary">Deco.in</a>
+                                <a href="services.html#meetingroom" class="block py-1 text-xs text-secondary hover:text-primary">Meeting Room</a>
+                                <a href="services.html#coworking" class="block py-1 text-xs text-secondary hover:text-primary">Coworking</a>
+                                <a href="services.html#virtualoffice" class="block py-1 text-xs text-secondary hover:text-primary">Virtual Office</a>
+                            </div>
+                        </div>
+
+                        <!-- Sub-Accordion: Food and Beverage -->
+                        <div class="accordion-item rounded-lg bg-surface-container-low p-1.5">
+                            <button type="button" data-accordion-toggle class="w-full flex items-center justify-between py-2 px-2.5 rounded-lg text-xs font-bold text-on-surface hover:text-primary">
+                                <span class="flex items-center gap-1.5">
+                                    <span class="material-symbols-outlined text-sm text-primary">restaurant</span>
+                                    <span>Food &amp; Beverage</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm transition-transform accordion-icon text-secondary">expand_more</span>
+                            </button>
+                            <div class="accordion-content pl-4 pr-1 pb-1 space-y-1">
+                                <a href="services.html#cateringbrownsugar" class="block py-1 text-xs text-secondary hover:text-primary">Catering Brown Sugar</a>
+                                <a href="services.html#kallsmaison" class="block py-1 text-xs text-secondary hover:text-primary">Kall's Maison</a>
+                                <a href="services.html#skywatchresto" class="block py-1 text-xs text-secondary hover:text-primary">Skywatch Resto</a>
+                                <a href="services.html#technocoffee" class="block py-1 text-xs text-secondary hover:text-primary">Techno Coffee</a>
+                                <a href="services.html#frozenfood" class="block py-1 text-xs text-secondary hover:text-primary">Frozen Food</a>
+                                <a href="services.html#santapin" class="block py-1 text-xs text-secondary hover:text-primary">Santapin</a>
+                                <a href="services.html#gampangenak" class="block py-1 text-xs text-secondary hover:text-primary">Gampang Enak</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Karir -->
+                <a href="careers.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Karir</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">work</span>
+                </a>
+
+                <!-- 6. Kontak -->
+                <button type="button" data-open-contact class="w-full text-left text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Kontak</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">call</span>
+                </button>
+            </nav>
+        </div>
+        <div class="pt-6 border-t border-surface-variant flex flex-col gap-3">
+            <button data-open-login class="w-full text-center py-2.5 font-semibold text-primary border border-primary/30 rounded-xl hover:bg-primary/5">Log In</button>
+            <button data-open-contact class="w-full text-center py-2.5 font-semibold text-white bg-primary rounded-xl hover:bg-deep-crimson shadow-md">Hubungi Kami</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-10 pb-24 px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto w-full">
+        <!-- Hero Section -->
+        <section class="mb-12 md:mb-16 text-center md:text-left">
+            <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-semibold mb-4">
+                <span class="material-symbols-outlined text-sm">cases</span>
+                <span>Track Record &amp; Case Studies</span>
+            </div>
+            <h1 class="font-display-lg text-display-lg text-pure-black mb-4">Our Portfolio</h1>
+            <p class="font-body-lg text-body-lg text-secondary max-w-3xl">Explore our legacy of transformative projects across industries. A testament to innovation, precision, and enterprise-grade excellence.</p>
+        </section>
+
+        <!-- Category Filters -->
+        <section class="mb-12">
+            <div class="flex flex-wrap gap-3 justify-center md:justify-start" id="portfolioFilterContainer">
+                <button type="button" data-portfolio-filter="all" class="px-6 py-2.5 rounded-full font-label-md text-label-md bg-primary/10 text-primary border border-primary/20 transition-all">All Projects</button>
+                <button type="button" data-portfolio-filter="commercial" class="px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-variant transition-all">Commercial</button>
+                <button type="button" data-portfolio-filter="infrastructure" class="px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-variant transition-all">Infrastructure</button>
+                <button type="button" data-portfolio-filter="technology" class="px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-variant transition-all">Technology</button>
+                <button type="button" data-portfolio-filter="sustainability" class="px-6 py-2.5 rounded-full font-label-md text-label-md bg-surface-container text-on-surface hover:bg-surface-variant transition-all">Sustainability</button>
+            </div>
+        </section>
+
+        <!-- Portfolio Bento Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-16" id="portfolioGrid">
+            <!-- Featured Large Item: Nexus Corporate Park -->
+            <article data-portfolio-category="infrastructure" onclick="openProjectModal('Nexus Corporate Park', 'Infrastructure', 'A master-planned sustainable business hub integrating smart grid technology, automated climate zones, and expansive botanical green spaces spanning over 45 hectares.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuA5ZlTI_XcQW0a4EIis5KtsJOTFjCQdMtgUfyYsclAQWs17M0cb8_Rk_mi_pbJ9XKQdXhnFADDtuSe7F37AMcYXqEG_8dM_RiSifG2JXwOXA2b3U4CSsTgGB3emIXtrWoG2mnrHl9tLqqVhzqyLvI5Fzgxtz3Grjwpfr4kSb84gMnpsX2lCh-bweJKg9DARgQI7_ngIiKZ9Ab6Wu520F2cH4FJXVPwnawUlHQhC5l4C3lUQxwswHSPl')" class="md:col-span-8 rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer relative min-h-[420px]">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA5ZlTI_XcQW0a4EIis5KtsJOTFjCQdMtgUfyYsclAQWs17M0cb8_Rk_mi_pbJ9XKQdXhnFADDtuSe7F37AMcYXqEG_8dM_RiSifG2JXwOXA2b3U4CSsTgGB3emIXtrWoG2mnrHl9tLqqVhzqyLvI5Fzgxtz3Grjwpfr4kSb84gMnpsX2lCh-bweJKg9DARgQI7_ngIiKZ9Ab6Wu520F2cH4FJXVPwnawUlHQhC5l4C3lUQxwswHSPl')"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-pure-black/85 via-pure-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 w-full glass-panel border-0 border-t border-white/20">
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full font-label-sm text-label-sm text-white mb-3">Infrastructure</span>
+                            <h2 class="font-headline-lg text-headline-lg text-white mb-2 group-hover:text-primary-fixed-dim transition-colors">Nexus Corporate Park</h2>
+                            <p class="font-body-md text-body-md text-white/80 max-w-xl">A master-planned sustainable business hub integrating smart grid technology and expansive green spaces.</p>
+                        </div>
+                        <span class="material-symbols-outlined text-white/70 group-hover:text-white transition-colors text-2xl group-hover:translate-x-1">arrow_forward</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Medium Item: DataCore Alpha -->
+            <article data-portfolio-category="technology" onclick="openProjectModal('DataCore Alpha', 'Technology', 'Tier IV hyperscale modular data facility built with dual biometric access security, renewable liquid cooling, and redundant fiber links for financial enterprise tenants.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBdZfapPVcjZIa1PpS9BBdVihlxtFOUciwWvAYEcEnePfcBCh7Rh4Pvvfb9ddaxBfrvyH_34Oh8fzfQyGWIMRxuzIKqgo6DPqLDdkyAHEl_hQb7CXLuLyqkNrZqzv75Uk4--GfsmGiHm5APUbUP_ZnKt6p9GAD4AJMt3xXib9QK5QiNN0ecd-8FHgOSeXQUTP8upacVu-fl5ut-Wt_wNWd2xwzSmucnEiHSjw_EpxNdHCb82FvdF7BZ')" class="md:col-span-4 rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer relative min-h-[420px]">
+                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdZfapPVcjZIa1PpS9BBdVihlxtFOUciwWvAYEcEnePfcBCh7Rh4Pvvfb9ddaxBfrvyH_34Oh8fzfQyGWIMRxuzIKqgo6DPqLDdkyAHEl_hQb7CXLuLyqkNrZqzv75Uk4--GfsmGiHm5APUbUP_ZnKt6p9GAD4AJMt3xXib9QK5QiNN0ecd-8FHgOSeXQUTP8upacVu-fl5ut-Wt_wNWd2xwzSmucnEiHSjw_EpxNdHCb82FvdF7BZ')"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-pure-black/85 via-pure-black/30 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-6 w-full glass-panel border-0 border-t border-white/20">
+                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full font-label-sm text-label-sm text-white mb-3">Technology</span>
+                    <h3 class="font-headline-md text-headline-md text-white mb-2 group-hover:text-primary-fixed-dim transition-colors">DataCore Alpha</h3>
+                    <p class="font-body-md text-body-md text-white/80 line-clamp-2">Next-generation secure data storage &amp; low-latency cloud infrastructure.</p>
+                </div>
+            </article>
+
+            <!-- Small Item: Culinary Atrium -->
+            <article data-portfolio-category="commercial" onclick="openProjectModal('Culinary Atrium', 'Commercial', 'An innovative 1,500-seat multi-concept hospitality hall providing artisanal dining, cashless ordering kiosks, and curated executive private suites.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuBNBBfPtOaYk64g6mQDmJLr7pPZ0Qu6iUItZQ24xX_VBeqMPGxf-2OghIWk67TTx-C9QCyHCbrUFAjDkj0I5e6s_3VAGMJeii2v8RRAixGFrEv29BuakujxkPqol6a9mHpmdKywB2Zki1oQ3J6NNSJVRf8vBETBX7l-excC_7TgoNnsqL-nXwsS1T0u7vPx5XAC5WRh_twiNPtoHby45jN1V-btV7LcTOXEYifAUAPtF0aZGjQamNMe')" class="md:col-span-4 rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer flex flex-col border border-surface-variant">
+                <div class="h-48 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNBBfPtOaYk64g6mQDmJLr7pPZ0Qu6iUItZQ24xX_VBeqMPGxf-2OghIWk67TTx-C9QCyHCbrUFAjDkj0I5e6s_3VAGMJeii2v8RRAixGFrEv29BuakujxkPqol6a9mHpmdKywB2Zki1oQ3J6NNSJVRf8vBETBX7l-excC_7TgoNnsqL-nXwsS1T0u7vPx5XAC5WRh_twiNPtoHby45jN1V-btV7LcTOXEYifAUAPtF0aZGjQamNMe')"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="font-label-sm text-label-sm text-secondary mb-2 block">Commercial Hospitality</span>
+                        <h3 class="font-headline-md text-headline-md text-pure-black mb-2 group-hover:text-primary transition-colors">Culinary Atrium</h3>
+                        <p class="font-body-md text-body-md text-secondary line-clamp-3">Redefining corporate dining with a focus on organic, locally sourced gastronomy.</p>
+                    </div>
+                    <span class="text-xs text-primary font-semibold mt-4 flex items-center gap-1">Details <span class="material-symbols-outlined text-sm">east</span></span>
+                </div>
+            </article>
+
+            <!-- Small Item: EcoGrid Initiative -->
+            <article data-portfolio-category="sustainability" onclick="openProjectModal('EcoGrid Initiative', 'Sustainability', 'Rooftop solar photovoltaic arrays coupled with battery energy storage systems, cutting commercial building grid load by 42%.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuDHV5ChYYu-iS02c2CY369OkORigVSAFXBjceldWWz4QIEtSMbDGnAF2k7VKRzQjT6X8L_81AxRNRdMs2qhfRsYWjulIL2ESAgoISz-lla-zz6MaW-FdrHD7t9_znLB4tknu7B5RyRxZ9eHt8n_aZREA-wA_0LiVQFSgwFUoW7NKhnjqyejn_sFdzuTNC-8vGGzPV0q6L5PFlX0pqU5FuHmDg6IlfSdJujU70p_mHLI8dRRKNPpXCQ3')" class="md:col-span-4 rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer flex flex-col border border-surface-variant">
+                <div class="h-48 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDHV5ChYYu-iS02c2CY369OkORigVSAFXBjceldWWz4QIEtSMbDGnAF2k7VKRzQjT6X8L_81AxRNRdMs2qhfRsYWjulIL2ESAgoISz-lla-zz6MaW-FdrHD7t9_znLB4tknu7B5RyRxZ9eHt8n_aZREA-wA_0LiVQFSgwFUoW7NKhnjqyejn_sFdzuTNC-8vGGzPV0q6L5PFlX0pqU5FuHmDg6IlfSdJujU70p_mHLI8dRRKNPpXCQ3')"></div>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="font-label-sm text-label-sm text-secondary mb-2 block">Sustainability</span>
+                        <h3 class="font-headline-md text-headline-md text-pure-black mb-2 group-hover:text-primary transition-colors">EcoGrid Initiative</h3>
+                        <p class="font-body-md text-body-md text-secondary line-clamp-3">Pioneering self-sustaining clean energy solutions for modern urban commercial campuses.</p>
+                    </div>
+                    <span class="text-xs text-primary font-semibold mt-4 flex items-center gap-1">Details <span class="material-symbols-outlined text-sm">east</span></span>
+                </div>
+            </article>
+
+            <!-- Small Item: Project Vertex -->
+            <article data-portfolio-category="infrastructure" onclick="openProjectModal('Project Vertex', 'Infrastructure', 'Flagship 60-story commercial tower under development featuring kinetic facade thermal insulation and zero-emission transit links.', 'https://lh3.googleusercontent.com/aida-public/AB6AXuAD_HCZxZfJYPNGG0ssGdv6texVnj34pHEmdoBOC44Eh5FbU5wmDuZC5vfo3LKKsSdhA69bBQC3N1eWrwqrf_EuqK16PahDI98-oy1ZgCJIBoWX3Yx7OqPVs3mftj1_H9EpwPgqWjjUyyM82SbMOEAPvYt_QB524PLGexRxE_lkJ8y39q8LKJ8xb1JiXdfsKjmb4LkGnyykYMHyBJ6JM1b8hbKBnJvesN9ECtsGjZsvzy9ItJjMwE77')" class="md:col-span-4 rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer flex flex-col border border-surface-variant">
+                <div class="h-48 relative overflow-hidden bg-surface-container-high flex items-center justify-center">
+                    <span class="material-symbols-outlined text-6xl text-primary/30">domain</span>
+                </div>
+                <div class="p-6 flex-grow flex flex-col justify-between">
+                    <div>
+                        <span class="font-label-sm text-label-sm text-secondary mb-2 block">Infrastructure</span>
+                        <h3 class="font-headline-md text-headline-md text-pure-black mb-2 group-hover:text-primary transition-colors">Project Vertex</h3>
+                        <p class="font-body-md text-body-md text-secondary line-clamp-3">Conceptual design phase for our upcoming flagship commercial complex.</p>
+                    </div>
+                    <span class="text-xs text-primary font-semibold mt-4 flex items-center gap-1">Details <span class="material-symbols-outlined text-sm">east</span></span>
+                </div>
+            </article>
+        </section>
+
+        <!-- Pagination -->
+        <section class="flex justify-center items-center gap-2 mt-12">
+            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50" disabled>
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-white font-label-md text-label-md shadow-sm">1</button>
+            <button onclick="showToast('Page 2', 'Showing additional archival projects.', 'info')" class="w-10 h-10 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md">2</button>
+            <button onclick="showToast('Page 3', 'Showing additional archival projects.', 'info')" class="w-10 h-10 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md">3</button>
+            <span class="text-secondary px-2">...</span>
+            <button onclick="showToast('Page 8', 'Showing oldest projects.', 'info')" class="w-10 h-10 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md">8</button>
+            <button onclick="showToast('Next Page', 'Loaded page 2 items.', 'info')" class="w-10 h-10 rounded-lg flex items-center justify-center text-secondary hover:bg-surface-container hover:text-primary transition-colors">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container dark:bg-inverse-surface w-full py-16 border-t border-surface-variant">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="md:col-span-1 flex flex-col items-start">
+                <a href="index.html" class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed-dim mb-4 block">
+                    Technolife Group
+                </a>
+                <p class="font-body-md text-body-md text-secondary mt-2">Pioneering enterprise solutions and architectural excellence.</p>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h4 class="font-label-md text-label-md font-bold text-on-surface mb-2">Explore</h4>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="services.html">Facilities &amp; Services</a>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="services.html#fnb">Food &amp; Beverage</a>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="org-structure.html">Org Structure</a>
+            </div>
+            <div class="flex flex-col gap-3">
+                <h4 class="font-label-md text-label-md font-bold text-on-surface mb-2">Company</h4>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="history.html">History</a>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="careers.html">Careers</a>
+                <a class="font-label-sm text-label-sm text-secondary hover:text-primary transition-colors hover:translate-x-1 duration-200 block" href="partnerships.html">Partnerships</a>
+            </div>
+            <div class="flex flex-col justify-end items-start md:items-end mt-8 md:mt-0">
+                <p class="font-label-sm text-label-sm text-secondary">&copy; 2024 Technolife Group. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="projectModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-surface-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 md:p-8 border border-surface-variant relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <span id="projectModalCategory" class="text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 text-primary uppercase tracking-wider mb-2 inline-block">Category</span>
+                    <h3 id="projectModalTitle" class="font-headline-md text-2xl font-bold text-on-surface">Project Title</h3>
+                </div>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="w-full h-64 rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                <img id="projectModalImg" src="" alt="Project Preview" class="w-full h-full object-cover"/>
+            </div>
+            <p id="projectModalDesc" class="text-sm text-secondary leading-relaxed mb-6"></p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-surface-variant text-xs">
+                <div>
+                    <span class="text-secondary block">Status</span>
+                    <span class="font-bold text-on-surface">Operational &amp; Scaled</span>
+                </div>
+                <div>
+                    <span class="text-secondary block">Technology</span>
+                    <span class="font-bold text-on-surface">IoT &amp; Cloud Integrated</span>
+                </div>
+                <div>
+                    <span class="text-secondary block">Standard</span>
+                    <span class="font-bold text-primary">ISO 14001 / Green</span>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-end">
+                <button type="button" data-open-contact class="bg-primary hover:bg-deep-crimson text-white px-6 py-2.5 rounded-xl text-sm font-semibold shadow-sm">
+                    Inquire Similar Project
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact & Login Modals (Global) -->
+    <div id="contactModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-surface-white w-full max-w-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-surface-variant relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="font-headline-md text-2xl font-bold text-primary">Contact Technolife</h3>
+                    <p class="text-secondary text-sm">Send an inquiry regarding our project portfolio</p>
+                </div>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label for="contactName" class="block text-xs font-semibold text-on-surface mb-1">Full Name *</label>
+                    <input type="text" id="contactName" required placeholder="Jane Doe" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"/>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="contactEmail" class="block text-xs font-semibold text-on-surface mb-1">Work Email *</label>
+                        <input type="email" id="contactEmail" required placeholder="jane@company.com" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"/>
+                    </div>
+                    <div>
+                        <label for="contactPhone" class="block text-xs font-semibold text-on-surface mb-1">Phone Number</label>
+                        <input type="tel" id="contactPhone" placeholder="+62 812 3456 7890" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="contactMessage" class="block text-xs font-semibold text-on-surface mb-1">Message *</label>
+                    <textarea id="contactMessage" required rows="4" placeholder="How can Technolife Group support your project?" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"></textarea>
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" data-close-modal class="px-5 py-2.5 rounded-xl border border-surface-variant text-sm font-semibold hover:bg-surface-container">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-deep-crimson text-white text-sm font-semibold shadow-sm flex items-center gap-1.5">
+                        <span>Send Inquiry</span>
+                        <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-surface-white w-full max-w-md rounded-2xl shadow-2xl p-6 md:p-8 border border-surface-variant relative">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="font-headline-md text-2xl font-bold text-primary">Portal Login</h3>
+                    <p class="text-secondary text-sm">Access project dashboards</p>
+                </div>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label for="loginEmail" class="block text-xs font-semibold text-on-surface mb-1">Email Address</label>
+                    <input type="email" id="loginEmail" value="admin@technolife.com" required class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"/>
+                </div>
+                <div>
+                    <label for="loginPassword" class="block text-xs font-semibold text-on-surface mb-1">Password</label>
+                    <input type="password" id="loginPassword" value="password123" required class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none"/>
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl bg-primary hover:bg-deep-crimson text-white font-semibold text-sm shadow-sm mt-2">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Quick Search Modal -->
+    <div id="searchModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-start justify-center pt-20 p-4">
+        <div class="modal-content bg-surface-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 border border-surface-variant relative">
+            <div class="flex items-center gap-3 border-b border-surface-variant pb-4 mb-4">
+                <span class="material-symbols-outlined text-primary text-2xl">search</span>
+                <input type="text" id="quickSearchInput" placeholder="Search projects, categories, or keywords..." class="w-full text-base bg-transparent border-none outline-none focus:ring-0 text-on-surface"/>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="quickSearchResults" class="max-h-[60vh] overflow-y-auto space-y-1 pr-1"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,218 @@
+/* Technolife Group - Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.dark .glass-panel {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-nav {
+    background: rgba(15, 15, 15, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Shadows */
+.ambient-shadow {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.hover-ambient-shadow {
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-ambient-shadow:hover {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+.premium-shadow {
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Transitions & Micro-interactions */
+.smooth-transition {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift {
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Modal Animations */
+.modal-overlay {
+    transition: opacity 0.25s ease-out;
+}
+
+.modal-content {
+    transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+}
+
+.modal-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-hidden .modal-content {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+}
+
+.modal-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-visible .modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* Toast Notifications */
+#toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+}
+
+.toast-item {
+    animation: toastSlideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toastFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+    }
+}
+
+/* Navigation Dropdowns */
+.nav-dropdown-wrapper {
+    position: relative;
+    padding-bottom: 8px;
+    margin-bottom: -8px;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 250px;
+    background: #ffffff;
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    padding: 0.5rem 0;
+}
+
+.nav-dropdown-wrapper:hover > .nav-dropdown-menu,
+.nav-dropdown-wrapper:focus-within > .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Nested Submenu (Dropdown inside Dropdown) */
+.nested-dropdown-wrapper {
+    position: relative;
+}
+
+.nested-dropdown-menu {
+    position: absolute;
+    top: -6px;
+    left: 100%;
+    min-width: 230px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 0.85rem;
+    box-shadow: 0 14px 38px rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(8px);
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 110;
+    padding: 0.5rem 0;
+}
+
+.nested-dropdown-wrapper:hover > .nested-dropdown-menu,
+.nested-dropdown-wrapper:focus-within > .nested-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Mobile accordion transitions */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-open > .accordion-content {
+    max-height: 1000px;
+    transition: max-height 0.4s ease-in;
+}
+
