@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Technolife Group - Admin Dashboard Stylesheet
+   Matching Visual Identity: Crimson Theme, Modern Typography, Sleek UI
+   ========================================================================== */
+
+:root {
+    --admin-primary: #b1002c;
+    --admin-primary-hover: #8f0023;
+    --admin-primary-light: rgba(177, 0, 44, 0.08);
+    --admin-sidebar-bg: #121316;
+    --admin-sidebar-hover: #1e2024;
+    --admin-surface: #ffffff;
+    --admin-surface-low: #f8f9fa;
+    --admin-border: #e9ecef;
+    --admin-text-main: #1a1c1e;
+    --admin-text-muted: #6c757d;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--admin-text-main);
+    background-color: #f4f6f8;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Poppins', system-ui, sans-serif;
+}
+
+/* Glassmorphic Cards & Elevate */
+.admin-card {
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card:hover {
+    box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f3f5;
+}
+::-webkit-scrollbar-thumb {
+    background: #ced4da;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #adb5bd;
+}
+
+/* Sidebar Navigation */
+.admin-sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    color: #9ca3af;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.admin-sidebar-link:hover {
+    color: #ffffff;
+    background-color: var(--admin-sidebar-hover);
+    transform: translateX(3px);
+}
+
+.admin-sidebar-link.active {
+    color: #ffffff;
+    background-color: var(--admin-primary);
+    box-shadow: 0 4px 14px rgba(177, 0, 44, 0.35);
+    font-weight: 600;
+}
+
+/* Status Badges */
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-pending {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.badge-confirmed, .badge-active {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.badge-completed {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border: 1px solid #d6d8db;
+}
+
+.badge-cancelled, .badge-inactive {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Image Upload Preview Box */
+.image-dropzone {
+    border: 2px dashed #cbd5e1;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+}
+
+.image-dropzone:hover {
+    border-color: var(--admin-primary);
+    background-color: #fdf2f4;
+}
+
+.image-preview-container {
+    width: 100%;
+    height: 180px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    background: #e2e8f0;
+}
+
+.image-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Modal Transitions */
+.admin-modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.admin-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.admin-modal-container {
+    transform: scale(0.95) translateY(-10px);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-modal-overlay.active .admin-modal-container {
+    transform: scale(1) translateY(0);
+}
+
+/* Table Hover Effect */
+.admin-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+.admin-table tbody tr:hover {
+    background-color: #fdf2f4;
+}
+
+/* Pulse indicator */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    background-color: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulse 1.8s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
