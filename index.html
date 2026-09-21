@@ -592,12 +592,21 @@
                     </label>
                     <a href="#" onclick="alert('Password reset link sent to demo email.'); return false;" class="text-primary hover:underline">Forgot password?</a>
                 </div>
-                <div class="p-3 bg-surface-container-low rounded-xl text-xs text-secondary border border-surface-variant/50">
-                    <span class="font-semibold text-on-surface">Demo Account:</span> admin@technolife.com / password123
+                <div class="p-3 bg-surface-container-low rounded-xl text-xs text-secondary border border-surface-variant/50 flex items-center justify-between">
+                    <div>
+                        <span class="font-semibold text-on-surface">Demo Admin:</span> admin@technolife.com
+                    </div>
+                    <span class="text-[10px] bg-primary/10 text-primary font-bold px-2 py-0.5 rounded">Super Admin</span>
                 </div>
                 <button type="submit" class="w-full py-3 rounded-xl bg-primary hover:bg-deep-crimson text-white font-semibold text-sm smooth-transition shadow-sm mt-2">
                     Sign In to Portal
                 </button>
+                <div class="text-center pt-2">
+                    <a href="admin/index.html" class="inline-flex items-center gap-1.5 text-xs text-primary font-bold hover:underline">
+                        <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
+                        <span>Buka Dashboard Admin Langsung &rarr;</span>
+                    </a>
+                </div>
             </form>
         </div>
     </div>
@@ -618,6 +627,7 @@
         </div>
     </div>
 
+    <script src="js/data-store.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

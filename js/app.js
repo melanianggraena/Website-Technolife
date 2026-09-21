@@ -38,6 +38,9 @@ const SEARCH_INDEX = [
 
 // Document Ready Initialization
 document.addEventListener('DOMContentLoaded', () => {
+    if (window.TechnoDataStore) {
+        TechnoDataStore.init();
+    }
     initModals();
     initMobileMenu();
     initMobileAccordion();
@@ -47,6 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initPortfolioFilters();
     initCareersSearch();
     initQuickSearch();
+    syncPublicPagesWithStore();
+
+    // Re-sync if store updates from another script or storage event
+    window.addEventListener('technoStoreUpdated', () => {
+        syncPublicPagesWithStore();
+    });
+    window.addEventListener('storage', (e) => {
+        if (e.key === 'technolife_master_store_v1') {
+            syncPublicPagesWithStore();
+        }
+    });
 });
 
 /* ==========================================================================
@@ -244,6 +258,14 @@ function initAuthSimulation() {
             updateAuthUI(username);
             closeModal('loginModal');
             showToast('Welcome Back!', `Logged in successfully as ${username}.`, 'success');
+            showToast('Login Berhasil!', `Selamat datang, ${username}. Mengarahkan ke Dashboard Admin...`, 'success');
+
+            // Redirect to admin dashboard if admin login
+            if (email.includes('admin') || username.toLowerCase() === 'admin') {
+                setTimeout(() => {
+                    window.location.href = 'admin/index.html';
+                }, 800);
+            }
         });
     }
 
@@ -263,6 +285,8 @@ function updateAuthUI(username) {
     document.querySelectorAll('[data-open-login]').forEach(btn => {
         if (username) {
             btn.innerHTML = `<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">account_circle</span> ${username}</span>`;
+            btn.innerHTML = `<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">admin_panel_settings</span> ${username}</span>`;
+            btn.title = "Buka Dashboard Admin";
             btn.onclick = (e) => {
                 e.preventDefault();
                 if (confirm(`Do you want to log out from account "${username}"?`)) {
@@ -270,9 +294,11 @@ function updateAuthUI(username) {
                     updateAuthUI(null);
                     showToast('Logged Out', 'You have been logged out safely.', 'info');
                 }
+                window.location.href = 'admin/index.html';
             };
         } else {
             btn.textContent = 'Log In';
+            btn.title = "Masuk ke Akun / Admin";
             btn.onclick = (e) => {
                 e.preventDefault();
                 openModal('loginModal');
@@ -283,6 +309,7 @@ function updateAuthUI(username) {
 
 /* ==========================================================================
    FORM HANDLERS (CONTACT, PARTNER, BOOKING, JOB APPLY)
+   Integrated directly with TechnoDataStore for real-time admin sync.
    ========================================================================== */
 function initForms() {
     // 1. Contact Us Modal Form
@@ -291,19 +318,40 @@ function initForms() {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const name = document.getElementById('contactName')?.value || 'Partner';
+            const name = document.getElementById('contactName')?.value || 'Pengunjung';
+            const email = document.getElementById('contactEmail')?.value || 'tamu@technolife.com';
+            const phone = document.getElementById('contactPhone')?.value || '-';
+            const subject = document.getElementById('contactSubject')?.value || 'Pertanyaan Umum';
+            const message = document.getElementById('contactMessage')?.value || '';
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Sending...';
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Mengirim...';
 
             setTimeout(() => {
+                // Save to central store
+                if (window.TechnoDataStore) {
+                    TechnoDataStore.addInquiry({
+                        type: 'Contact',
+                        name,
+                        email,
+                        phone,
+                        subject,
+                        message
+                    });
+                }
+
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
                 contactForm.reset();
                 closeModal('contactModal');
                 showToast('Inquiry Received', `Thank you, ${name}. Our enterprise team will contact you within 24 hours.`, 'success');
             }, 800);
+                showToast('Pesan Terkirim!', `Terima kasih, ${name}. Pesan Anda telah tersimpan dan diteruskan ke tim konsultan kami.`, 'success');
+            }, 600);
         });
     }
 
@@ -313,18 +361,39 @@ function initForms() {
         partnerForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const company = document.getElementById('partnerCompany')?.value || 'Your Company';
+            const company = document.getElementById('partnerCompany')?.value || 'Perusahaan Mitra';
+            const name = document.getElementById('partnerName')?.value || 'PIC';
+            const email = document.getElementById('partnerEmail')?.value || '-';
+            const phone = document.getElementById('partnerPhone')?.value || '-';
+            const message = document.getElementById('partnerMessage')?.value || 'Proposal Kemitraan';
+
             const submitBtn = partnerForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
 
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Processing...';
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Memproses...';
 
             setTimeout(() => {
+                if (window.TechnoDataStore) {
+                    TechnoDataStore.addInquiry({
+                        type: 'Partnership',
+                        name: company,
+                        pic: name,
+                        email,
+                        phone,
+                        subject: `Proposal Kemitraan: ${company}`,
+                        message
+                    });
+                }
+
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalText;
                 partnerForm.reset();
                 showToast('Partnership Proposal Sent', `Thank you! Strategic collaboration proposal for "${company}" has been routed to our corporate board.`, 'success');
             }, 1000);
+                showToast('Proposal Kemitraan Terkirim!', `Terima kasih! Pengajuan kolaborasi "${company}" telah masuk ke antrean direksi Technolife.`, 'success');
+            }, 800);
         });
     }
 
@@ -335,9 +404,32 @@ function initForms() {
             e.preventDefault();
             const venue = document.getElementById('bookingVenue')?.value || 'Facility';
             const date = document.getElementById('bookingDate')?.value || 'Today';
+            const venue = document.getElementById('bookingVenue')?.value || 'Fasilitas';
+            const date = document.getElementById('bookingDate')?.value || new Date().toISOString().slice(0, 10);
+            const time = document.getElementById('bookingTime')?.value || '10:00';
+            const pax = document.getElementById('bookingPax')?.value || '1';
+            const name = document.getElementById('bookingName')?.value || 'Pelanggan';
+            const email = document.getElementById('bookingEmail')?.value || 'tamu@mail.com';
+            const phone = document.getElementById('bookingPhone')?.value || '-';
+            const notes = document.getElementById('bookingNotes')?.value || '';
+
+            if (window.TechnoDataStore) {
+                TechnoDataStore.addBooking({
+                    serviceName: venue,
+                    date,
+                    time,
+                    pax,
+                    customerName: name,
+                    customerEmail: email,
+                    customerPhone: phone,
+                    notes
+                });
+            }
+
             closeModal('bookingModal');
             bookingForm.reset();
             showToast('Reservation Confirmed', `Your booking request for ${venue} on ${date} is being arranged. Details sent to your email.`, 'success');
+            showToast('Reservasi Berhasil!', `Permintaan reservasi ${venue} untuk tanggal ${date} telah masuk ke sistem admin Technolife.`, 'success');
         });
     }
 
@@ -348,9 +440,28 @@ function initForms() {
             e.preventDefault();
             const jobTitle = document.getElementById('applyJobTitle')?.value || 'the role';
             const applicantName = document.getElementById('applyName')?.value || 'Candidate';
+            const jobTitle = document.getElementById('applyJobTitle')?.value || 'Posisi';
+            const applicantName = document.getElementById('applyName')?.value || 'Kandidat';
+            const email = document.getElementById('applyEmail')?.value || '-';
+            const phone = document.getElementById('applyPhone')?.value || '-';
+            const portfolioUrl = document.getElementById('applyPortfolio')?.value || '';
+            const experience = document.getElementById('applyExperience')?.value || '-';
+
+            if (window.TechnoDataStore) {
+                TechnoDataStore.addApplicant({
+                    jobTitle,
+                    name: applicantName,
+                    email,
+                    phone,
+                    portfolioUrl,
+                    experience
+                });
+            }
+
             closeModal('jobApplyModal');
             jobApplyForm.reset();
             showToast('Application Submitted', `Thank you, ${applicantName}! Your application for "${jobTitle}" has been received by Technolife HR.`, 'success');
+            showToast('Lamaran Terkirim!', `Terima kasih, ${applicantName}! Lamaran Anda untuk posisi "${jobTitle}" telah tersimpan di sistem rekrutmen kami.`, 'success');
         });
     }
 }
@@ -519,4 +630,128 @@ function openProjectModal(title, category, description, imageUrl) {
 
     openModal('projectModal');
 }
+
+/* ==========================================================================
+   LIVE STORE SYNCHRONIZATION WITH PUBLIC WEBSITE
+   Ensures changes made in the Admin Dashboard (photos, texts, items)
+   are reflected dynamically across all public pages.
+   ========================================================================== */
+function syncPublicPagesWithStore() {
+    if (!window.TechnoDataStore) return;
+
+    // 1. Sync Services Page (10 Facilities + 7 F&B)
+    const facilities = TechnoDataStore.getFacilities();
+    if (facilities && facilities.length) {
+        facilities.forEach(f => {
+            const card = document.getElementById(f.id);
+            if (card) {
+                // Update Photo
+                const img = card.querySelector('img');
+                if (img && f.image && img.src !== f.image) {
+                    img.src = f.image;
+                }
+                // Update Title
+                const title = card.querySelector('h3');
+                if (title && f.name) {
+                    title.textContent = f.name;
+                }
+                // Update Badge
+                const badge = card.querySelector('.absolute.top-3 span') || card.querySelector('span[class*="rounded-full"]');
+                if (badge && f.badge) {
+                    badge.textContent = f.badge;
+                }
+                // Update Description
+                const desc = card.querySelector('p');
+                if (desc && f.description) {
+                    desc.textContent = f.description;
+                }
+                // Update Specs
+                const specs = card.querySelector('.border-t span.text-secondary') || card.querySelector('.mt-6 span.text-secondary');
+                if (specs && f.specs) {
+                    specs.textContent = f.specs;
+                }
+                // Active / Inactive
+                if (f.active === false) {
+                    card.style.opacity = '0.4';
+                    card.style.pointerEvents = 'none';
+                    card.title = 'Fasilitas sedang dalam pemeliharaan';
+                } else {
+                    card.style.opacity = '';
+                    card.style.pointerEvents = '';
+                }
+            }
+        });
+    }
+
+    const fnbItems = TechnoDataStore.getFnb();
+    if (fnbItems && fnbItems.length) {
+        fnbItems.forEach(f => {
+            const card = document.getElementById(f.id);
+            if (card) {
+                const img = card.querySelector('img');
+                if (img && f.image && img.src !== f.image) {
+                    img.src = f.image;
+                }
+                const title = card.querySelector('h3');
+                if (title && f.name) {
+                    title.textContent = f.name;
+                }
+                const badge = card.querySelector('.absolute.top-3 span');
+                if (badge && f.badge) {
+                    badge.textContent = f.badge;
+                }
+                const desc = card.querySelector('p');
+                if (desc && f.description) {
+                    desc.textContent = f.description;
+                }
+                if (f.active === false) {
+                    card.style.opacity = '0.4';
+                    card.style.pointerEvents = 'none';
+                } else {
+                    card.style.opacity = '';
+                    card.style.pointerEvents = '';
+                }
+            }
+        });
+    }
+
+    // 2. Sync Portfolio Grid (portfolio.html)
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    if (portfolioGrid) {
+        const projects = TechnoDataStore.getPortfolio();
+        if (projects && projects.length) {
+            portfolioGrid.innerHTML = projects.map(p => {
+                const colSpanClass = p.colSpan === 8 ? 'md:col-span-8 min-h-[420px]' : 
+                                     p.colSpan === 12 ? 'md:col-span-12 min-h-[440px]' : 'md:col-span-4 min-h-[420px]';
+                const isLarge = p.colSpan >= 8;
+
+                return `
+                    <article data-portfolio-category="${p.category}" onclick="openProjectModal('${p.title.replace(/'/g, "\\'")}', '${(p.badge || p.category).replace(/'/g, "\\'")}', '${(p.fullDesc || p.shortDesc).replace(/'/g, "\\'")}', '${p.image}')" class="${colSpanClass} rounded-xl overflow-hidden bg-white ambient-shadow hover-ambient-shadow transition-all duration-300 group cursor-pointer relative">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: url('${p.image}')"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-pure-black/85 via-pure-black/35 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6 md:p-8 w-full glass-panel border-0 border-t border-white/20">
+                            <div class="flex justify-between items-end">
+                                <div>
+                                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full font-label-sm text-label-sm text-white mb-3">
+                                        ${p.badge || p.category}
+                                    </span>
+                                    <h2 class="font-headline-lg text-headline-lg text-white mb-2 group-hover:text-primary-fixed-dim transition-colors">
+                                        ${p.title}
+                                    </h2>
+                                    <p class="font-body-md text-body-md text-white/80 max-w-xl line-clamp-2">
+                                        ${p.shortDesc}
+                                    </p>
+                                </div>
+                                <span class="material-symbols-outlined text-white/70 group-hover:text-white transition-colors text-2xl group-hover:translate-x-1 flex-shrink-0 ml-4">
+                                    arrow_forward
+                                </span>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+        }
+    }
+}
+
 
