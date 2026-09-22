@@ -312,158 +312,27 @@ function updateAuthUI(username) {
    Integrated directly with TechnoDataStore for real-time admin sync.
    ========================================================================== */
 function initForms() {
-    // 1. Contact Us Modal Form
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('contactName')?.value || 'Partner';
-            const name = document.getElementById('contactName')?.value || 'Pengunjung';
-            const email = document.getElementById('contactEmail')?.value || 'tamu@technolife.com';
-            const phone = document.getElementById('contactPhone')?.value || '-';
-            const subject = document.getElementById('contactSubject')?.value || 'Pertanyaan Umum';
-            const message = document.getElementById('contactMessage')?.value || '';
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Sending...';
-            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Mengirim...';
-
-            setTimeout(() => {
-                // Save to central store
-                if (window.TechnoDataStore) {
-                    TechnoDataStore.addInquiry({
-                        type: 'Contact',
-                        name,
-                        email,
-                        phone,
-                        subject,
-                        message
-                    });
-                }
-
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                contactForm.reset();
-                closeModal('contactModal');
-                showToast('Inquiry Received', `Thank you, ${name}. Our enterprise team will contact you within 24 hours.`, 'success');
-            }, 800);
-                showToast('Pesan Terkirim!', `Terima kasih, ${name}. Pesan Anda telah tersimpan dan diteruskan ke tim konsultan kami.`, 'success');
-            }, 600);
-        });
-    }
-
-    // 2. Partnership Application Form
-    const partnerForm = document.getElementById('partnerInquiryForm');
-    if (partnerForm) {
-        partnerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const company = document.getElementById('partnerCompany')?.value || 'Your Company';
-            const company = document.getElementById('partnerCompany')?.value || 'Perusahaan Mitra';
-            const name = document.getElementById('partnerName')?.value || 'PIC';
-            const email = document.getElementById('partnerEmail')?.value || '-';
-            const phone = document.getElementById('partnerPhone')?.value || '-';
-            const message = document.getElementById('partnerMessage')?.value || 'Proposal Kemitraan';
-
-            const submitBtn = partnerForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Processing...';
-            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Memproses...';
-
-            setTimeout(() => {
-                if (window.TechnoDataStore) {
-                    TechnoDataStore.addInquiry({
-                        type: 'Partnership',
-                        name: company,
-                        pic: name,
-                        email,
-                        phone,
-                        subject: `Proposal Kemitraan: ${company}`,
-                        message
-                    });
-                }
-
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                partnerForm.reset();
-                showToast('Partnership Proposal Sent', `Thank you! Strategic collaboration proposal for "${company}" has been routed to our corporate board.`, 'success');
-            }, 1000);
-                showToast('Proposal Kemitraan Terkirim!', `Terima kasih! Pengajuan kolaborasi "${company}" telah masuk ke antrean direksi Technolife.`, 'success');
-            }, 800);
-        });
-    }
-
-    // 3. Table / Space Booking Form (Services page)
-    const bookingForm = document.getElementById('bookingForm');
-    if (bookingForm) {
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const venue = document.getElementById('bookingVenue')?.value || 'Facility';
-            const date = document.getElementById('bookingDate')?.value || 'Today';
-            const venue = document.getElementById('bookingVenue')?.value || 'Fasilitas';
-            const date = document.getElementById('bookingDate')?.value || new Date().toISOString().slice(0, 10);
-            const time = document.getElementById('bookingTime')?.value || '10:00';
-            const pax = document.getElementById('bookingPax')?.value || '1';
-            const name = document.getElementById('bookingName')?.value || 'Pelanggan';
-            const email = document.getElementById('bookingEmail')?.value || 'tamu@mail.com';
-            const phone = document.getElementById('bookingPhone')?.value || '-';
-            const notes = document.getElementById('bookingNotes')?.value || '';
-
-            if (window.TechnoDataStore) {
-                TechnoDataStore.addBooking({
-                    serviceName: venue,
-                    date,
-                    time,
-                    pax,
-                    customerName: name,
-                    customerEmail: email,
-                    customerPhone: phone,
-                    notes
-                });
-            }
-
-            closeModal('bookingModal');
-            bookingForm.reset();
-            showToast('Reservation Confirmed', `Your booking request for ${venue} on ${date} is being arranged. Details sent to your email.`, 'success');
-            showToast('Reservasi Berhasil!', `Permintaan reservasi ${venue} untuk tanggal ${date} telah masuk ke sistem admin Technolife.`, 'success');
-        });
-    }
-
-    // 4. Job Application Modal Form
-    const jobApplyForm = document.getElementById('jobApplyForm');
-    if (jobApplyForm) {
-        jobApplyForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const jobTitle = document.getElementById('applyJobTitle')?.value || 'the role';
-            const applicantName = document.getElementById('applyName')?.value || 'Candidate';
-            const jobTitle = document.getElementById('applyJobTitle')?.value || 'Posisi';
-            const applicantName = document.getElementById('applyName')?.value || 'Kandidat';
-            const email = document.getElementById('applyEmail')?.value || '-';
-            const phone = document.getElementById('applyPhone')?.value || '-';
-            const portfolioUrl = document.getElementById('applyPortfolio')?.value || '';
-            const experience = document.getElementById('applyExperience')?.value || '-';
-
-            if (window.TechnoDataStore) {
-                TechnoDataStore.addApplicant({
-                    jobTitle,
-                    name: applicantName,
-                    email,
-                    phone,
-                    portfolioUrl,
-                    experience
-                });
-            }
-
-            closeModal('jobApplyModal');
-            jobApplyForm.reset();
-            showToast('Application Submitted', `Thank you, ${applicantName}! Your application for "${jobTitle}" has been received by Technolife HR.`, 'success');
-            showToast('Lamaran Terkirim!', `Terima kasih, ${applicantName}! Lamaran Anda untuk posisi "${jobTitle}" telah tersimpan di sistem rekrutmen kami.`, 'success');
-        });
-    }
+    const bind = (form, callback) => form?.addEventListener('submit', event => { event.preventDefault(); callback(); });
+    bind(document.getElementById('contactForm'), () => {
+        const name = document.getElementById('contactName')?.value || 'Pengunjung';
+        window.TechnoDataStore?.addInquiry({ type:'Contact', name, email:document.getElementById('contactEmail')?.value || '-', phone:document.getElementById('contactPhone')?.value || '-', subject:document.getElementById('contactSubject')?.value || 'Pertanyaan Umum', message:document.getElementById('contactMessage')?.value || '' });
+        document.getElementById('contactForm').reset(); closeModal('contactModal'); showToast('Pesan terkirim', `Terima kasih, ${name}.`, 'success');
+    });
+    bind(document.getElementById('partnerInquiryForm'), () => {
+        const company = document.getElementById('partnerCompany')?.value || 'Mitra';
+        window.TechnoDataStore?.addInquiry({ type:'Partnership', name:company, pic:document.getElementById('partnerName')?.value || '-', email:document.getElementById('partnerEmail')?.value || '-', phone:document.getElementById('partnerPhone')?.value || '-', subject:`Proposal Kemitraan: ${company}`, message:document.getElementById('partnerMessage')?.value || '' });
+        document.getElementById('partnerInquiryForm').reset(); showToast('Proposal terkirim', `Proposal ${company} telah diterima.`, 'success');
+    });
+    bind(document.getElementById('bookingForm'), () => {
+        const venue = document.getElementById('bookingVenue')?.value || 'Fasilitas';
+        window.TechnoDataStore?.addBooking({ serviceName:venue, date:document.getElementById('bookingDate')?.value || '', time:document.getElementById('bookingTime')?.value || '-', pax:document.getElementById('bookingGuests')?.value || '1', customerName:document.getElementById('bookingName')?.value || 'Pelanggan', customerEmail:document.getElementById('bookingEmail')?.value || '-', customerPhone:document.getElementById('bookingPhone')?.value || '-', notes:document.getElementById('bookingNotes')?.value || '' });
+        document.getElementById('bookingForm').reset(); closeModal('bookingModal'); showToast('Reservasi terkirim', `Permintaan ${venue} telah diterima.`, 'success');
+    });
+    bind(document.getElementById('jobApplyForm'), () => {
+        const jobTitle = document.getElementById('applyJobTitle')?.value || 'Posisi'; const name = document.getElementById('applyName')?.value || 'Kandidat';
+        window.TechnoDataStore?.addApplicant({ jobTitle, name, email:document.getElementById('applyEmail')?.value || '-', phone:document.getElementById('applyPhone')?.value || '-', portfolioUrl:document.getElementById('applyPortfolio')?.value || '', experience:document.getElementById('applyExperience')?.value || '-' });
+        document.getElementById('jobApplyForm').reset(); closeModal('jobApplyModal'); showToast('Lamaran terkirim', `Terima kasih, ${name}.`, 'success');
+    });
 }
 
 /* ==========================================================================
@@ -750,6 +619,30 @@ function syncPublicPagesWithStore() {
                     </article>
                 `;
             }).join('');
+        }
+    }
+
+    // 3. Sync career vacancies
+    const existingJobs = document.querySelectorAll('[data-job-item]');
+    if (existingJobs.length) {
+        const jobs = TechnoDataStore.getCareers().filter(job => job.status !== 'Closed');
+        const list = existingJobs[0].parentElement;
+        if (list && jobs.length) {
+            list.innerHTML = jobs.map(job => `
+                <div data-job-item class="bg-surface-white rounded-xl p-6 md:p-8 ambient-shadow hover:shadow-lg transition-all duration-300 flex flex-col md:flex-row justify-between items-start md:items-center border border-surface-variant">
+                    <div><h3 class="font-headline-md text-xl font-bold text-pure-black mb-1">${job.title}</h3>
+                    <p class="text-sm text-secondary">${job.dept} · ${job.location} · ${job.type}</p>
+                    <p class="text-sm text-secondary mt-2">${job.desc || ''}</p></div>
+                    <button type="button" data-apply-job="${job.title}" class="bg-primary hover:bg-deep-crimson text-white px-6 py-2.5 rounded-xl font-semibold text-xs whitespace-nowrap shadow-sm mt-4 md:mt-0">Apply Now</button>
+                </div>`).join('');
+            list.querySelectorAll('[data-apply-job]').forEach(button => button.addEventListener('click', () => {
+                const title = button.dataset.applyJob;
+                const field = document.getElementById('applyJobTitle');
+                const display = document.getElementById('applyJobTitleDisplay');
+                if (field) field.value = title;
+                if (display) display.textContent = title;
+                openModal('jobApplyModal');
+            }));
         }
     }
 }

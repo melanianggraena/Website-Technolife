@@ -80,6 +80,22 @@ function setupImageUploader(fileInputId, urlInputId, previewImgId) {
                     showAdminToast('File Terlalu Besar', 'Maksimal ukuran foto adalah 4MB agar performa browser optimal.', 'error');
                     return;
                 }
+                // In cloud mode the original file goes to Supabase Storage. Data URL is
+                // only a fallback for local preview mode.
+                if (window.SupabaseBridge?.ready) {
+                    const label = fileInput.closest('div')?.querySelector('span');
+                    const original = label?.textContent;
+                    if (label) label.textContent = 'Mengunggah gambar…';
+                    SupabaseBridge.uploadImage(file).then(url => {
+                        if (previewImg) previewImg.src = url;
+                        if (urlInput) urlInput.value = url;
+                        if (label) label.textContent = 'Gambar tersimpan di cloud';
+                    }).catch(error => {
+                        if (label) label.textContent = original || 'Pilih Foto';
+                        showAdminToast('Upload Gagal', error.message || 'Gagal mengunggah gambar.', 'error');
+                    });
+                    return;
+                }
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     const base64 = event.target.result;
@@ -103,6 +119,9 @@ function setupImageUploader(fileInputId, urlInputId, previewImgId) {
 
 // Global Admin Setup (Sidebar, Active Link, Mobile Drawer)
 document.addEventListener('DOMContentLoaded', () => {
+    // Akses tulis cloud hanya untuk akun Supabase admin. Saat konfigurasi belum diisi,
+    // dashboard tetap dapat dipreview secara lokal.
+    requireCloudAdminLogin();
     // Mobile sidebar toggle
     const toggleBtn = document.getElementById('adminSidebarToggle');
     const sidebar = document.getElementById('adminSidebar');
@@ -141,6 +160,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+async function requireCloudAdminLogin() {
+    if (!window.SupabaseBridge?.ready) return;
+    const current = await SupabaseBridge.session();
+    if (current) return;
+    const layer = document.createElement('div');
+    layer.id = 'supabaseAdminLogin';
+    layer.className = 'fixed inset-0 z-[100] bg-admin-dark/95 backdrop-blur-sm flex items-center justify-center p-4';
+    layer.innerHTML = `
+        <form class="w-full max-w-sm bg-white rounded-2xl p-7 shadow-2xl space-y-4">
+            <div><p class="text-primary font-bold text-xs uppercase tracking-wider">Technolife Admin</p><h1 class="font-heading text-xl font-bold mt-1">Masuk untuk mengelola website</h1><p class="text-xs text-gray-500 mt-2">Gunakan akun admin yang dibuat di Supabase Authentication.</p></div>
+            <label class="block text-xs font-bold text-gray-700">Email<input required type="email" name="email" class="mt-1.5 w-full rounded-xl border border-gray-200 p-3 text-sm" placeholder="admin@technolife.com"></label>
+            <label class="block text-xs font-bold text-gray-700">Password<input required type="password" name="password" class="mt-1.5 w-full rounded-xl border border-gray-200 p-3 text-sm"></label>
+            <p data-login-error class="hidden text-xs text-red-600"></p>
+            <button class="w-full rounded-xl bg-primary text-white font-bold text-sm py-3">Masuk ke Dashboard</button>
+        </form>`;
+    document.body.appendChild(layer);
+    layer.querySelector('form').addEventListener('submit', async event => {
+        event.preventDefault();
+        const form = event.currentTarget, error = form.querySelector('[data-login-error]');
+        const button = form.querySelector('button'); button.disabled = true; button.textContent = 'Memeriksa akun…';
+        try {
+            await SupabaseBridge.signIn(form.email.value, form.password.value);
+            layer.remove(); showAdminToast('Login berhasil', 'Perubahan akan dipublikasikan ke website.', 'success');
+        } catch (e) {
+            error.textContent = e.message || 'Email atau password tidak valid.'; error.classList.remove('hidden');
+            button.disabled = false; button.textContent = 'Masuk ke Dashboard';
+        }
+    });
+}
 
 /* ==========================================================================
    1. DASHBOARD OVERVIEW (index.html)
