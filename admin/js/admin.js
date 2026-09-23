@@ -872,6 +872,53 @@ function initSettingsPage() {
         });
     }
 
+    const home = settings.home || {};
+    const homeForm = document.getElementById('homeContentForm');
+    if (homeForm) {
+        document.getElementById('homeEditEyebrow').value = home.eyebrow || '';
+        document.getElementById('homeEditTitle').value = home.title || '';
+        document.getElementById('homeEditDescription').value = home.description || '';
+        document.getElementById('homeEditHeroImage').value = home.heroImage || '';
+        const heroPreview = document.getElementById('homeHeroPreview');
+        if (home.heroImage) heroPreview.src = home.heroImage;
+        document.getElementById('homeHeroFile').addEventListener('change', async event => {
+            const file = event.target.files[0];
+            if (!file) return;
+            if (file.size > 4 * 1024 * 1024) {
+                showAdminToast('File terlalu besar', 'Ukuran gambar maksimal 4 MB.', 'error');
+                event.target.value = '';
+                return;
+            }
+            try {
+                if (window.SupabaseBridge?.ready) {
+                    heroPreview.style.opacity = '0.5';
+                    const url = await SupabaseBridge.uploadImage(file);
+                    document.getElementById('homeEditHeroImage').value = url;
+                    heroPreview.src = url;
+                    heroPreview.style.opacity = '1';
+                    showAdminToast('Gambar siap', 'Gambar hero berhasil diunggah ke cloud.', 'success');
+                } else {
+                    const reader = new FileReader();
+                    reader.onload = load => {
+                        document.getElementById('homeEditHeroImage').value = load.target.result;
+                        heroPreview.src = load.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            } catch (error) {
+                heroPreview.style.opacity = '1';
+                showAdminToast('Upload gagal', error.message || 'Gambar tidak dapat diunggah.', 'error');
+            }
+        });
+        (home.stats || []).forEach((stat, index) => { document.getElementById(`homeStat${index}ValueEdit`).value = stat.value || ''; document.getElementById(`homeStat${index}LabelEdit`).value = stat.label || ''; });
+        homeForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const stats = [0,1,2,3].map(index => ({ value: document.getElementById(`homeStat${index}ValueEdit`).value.trim(), label: document.getElementById(`homeStat${index}LabelEdit`).value.trim() }));
+            TechnoDataStore.updateSettings({ home: { eyebrow: document.getElementById('homeEditEyebrow').value.trim(), title: document.getElementById('homeEditTitle').value.trim(), description: document.getElementById('homeEditDescription').value.trim(), heroImage: document.getElementById('homeEditHeroImage').value.trim(), stats } });
+            showAdminToast('Konten Home Disimpan', 'Hero dan statistik halaman depan telah diperbarui.', 'success');
+        });
+    }
+
     // Export Backup
     const exportBtn = document.getElementById('btnExportBackup');
     if (exportBtn) {

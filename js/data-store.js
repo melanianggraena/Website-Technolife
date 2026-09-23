@@ -19,6 +19,16 @@ const DEFAULT_STORE_DATA = {
         facebookUrl: "https://facebook.com/technolife.id",
         instagramUrl: "https://instagram.com/technolife_id",
         linkedinUrl: "https://linkedin.com/company/technolife-id"
+        ,home: {
+            eyebrow: "Enterprise Facilities & Hospitality Management",
+            title: "Pioneering Enterprise Excellence",
+            description: "Delivering world-class facilities management and exceptional food & beverage experiences through rigorous operational standards and innovative solutions.",
+            heroImage: "",
+            stats: [
+                { value: "25+", label: "Years Exp" }, { value: "12+", label: "Business Units" },
+                { value: "500+", label: "Team Members" }, { value: "1000+", label: "Happy Clients" }
+            ]
+        }
     },
     facilities: [
         {

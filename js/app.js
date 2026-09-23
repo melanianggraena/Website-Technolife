@@ -508,6 +508,17 @@ function openProjectModal(title, category, description, imageUrl) {
 function syncPublicPagesWithStore() {
     if (!window.TechnoDataStore) return;
 
+    // Home hero & statistics
+    const home = TechnoDataStore.getSettings().home;
+    if (home) {
+        const write = (id, value, html = false) => { const el = document.getElementById(id); if (el && value) el[html ? 'innerHTML' : 'textContent'] = value; };
+        write('homeEyebrow', home.eyebrow);
+        write('homeTitle', (home.title || '').replace(/\n/g, '<br>'), true);
+        write('homeDescription', home.description);
+        document.querySelectorAll('main > section:first-child img').forEach(image => { if (home.heroImage) image.src = home.heroImage; });
+        (home.stats || []).forEach((stat, index) => { write(`homeStat${index}Value`, stat.value); write(`homeStat${index}Label`, stat.label); });
+    }
+
     // 1. Sync Services Page (10 Facilities + 7 F&B)
     const facilities = TechnoDataStore.getFacilities();
     if (facilities && facilities.length) {
