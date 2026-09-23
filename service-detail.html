@@ -259,6 +259,10 @@
                 <div class="lg:col-span-8 rounded-2xl overflow-hidden ambient-shadow border border-surface-variant bg-gradient-to-b from-surface-container-low via-surface-container-lowest to-surface-container-low relative group aspect-[16/10] max-h-[480px] flex items-center justify-center p-6">
                     <img id="detailMainImageBg" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-125 select-none pointer-events-none" alt="" src=""/>
                     <img id="detailMainImage" class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-102 transition-transform duration-700 drop-shadow-md" alt="Detail Image" src=""/>
+                    <div id="detailImageFallback" class="relative z-10 hidden flex-col items-center gap-2 text-center text-secondary">
+                        <span class="material-symbols-outlined text-4xl text-primary/60">image</span>
+                        <span class="text-sm font-medium">Foto layanan sedang disiapkan</span>
+                    </div>
                     <div class="absolute bottom-4 left-4 z-20 bg-pure-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
                         <span class="material-symbols-outlined text-sm">photo_camera</span>
                         <span>Dokumentasi Resmi Technolife</span>
@@ -582,17 +586,31 @@
             // 4. Main Photo & Gallery
             const mainImg = document.getElementById('detailMainImage');
             const mainImgBg = document.getElementById('detailMainImageBg');
+            const imageFallback = document.getElementById('detailImageFallback');
+            const showImageFallback = () => {
+                if (mainImg) {
+                    mainImg.removeAttribute('src');
+                    mainImg.classList.add('hidden');
+                }
+                if (mainImgBg) mainImgBg.removeAttribute('src');
+                if (imageFallback) imageFallback.classList.remove('hidden');
+            };
             if (mainImg && item.image) {
+                mainImg.classList.remove('hidden');
+                if (imageFallback) imageFallback.classList.add('hidden');
+                mainImg.onerror = showImageFallback;
                 mainImg.src = item.image;
                 mainImg.alt = item.name;
                 if (mainImgBg) mainImgBg.src = item.image;
+            } else {
+                showImageFallback();
             }
 
             const galleryContainer = document.getElementById('galleryThumbnails');
             if (galleryContainer) {
                 const galleryImages = item.gallery && item.gallery.length ? item.gallery : [item.image];
 
-                galleryContainer.innerHTML = galleryImages.slice(0, 3).map((imgUrl, idx) => `
+                galleryContainer.innerHTML = galleryImages.filter(Boolean).slice(0, 3).map((imgUrl, idx) => `
                     <div onclick="swapMainImage('${imgUrl}')" class="rounded-xl overflow-hidden border border-surface-variant bg-gradient-to-b from-surface-container-low to-surface-container cursor-pointer relative group aspect-[16/10] max-h-[140px] hover:border-primary transition-all flex items-center justify-center p-3">
                         <img class="absolute inset-0 w-full h-full object-cover blur-md opacity-25 scale-125 select-none pointer-events-none" alt="" src="${imgUrl}"/>
                         <img class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-105 transition-transform duration-500 drop-shadow-sm" alt="Galeri ${item.name} ${idx + 1}" src="${imgUrl}"/>
@@ -710,17 +728,15 @@
                     mainImg.style.opacity = '1';
                 }, 150);
             }
-        }, 150);
         }
 
+        // Data Supabase dapat datang setelah halaman pertama kali dirender.
         window.addEventListener('technoStoreUpdated', renderServiceDetailPage);
         window.addEventListener('storage', (e) => {
             if (e.key === 'technolife_master_store_v1') {
                 renderServiceDetailPage();
             }
-        }
         });
     </script>
 </body>
 </html>
-
