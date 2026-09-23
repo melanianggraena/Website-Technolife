@@ -75,23 +75,39 @@ function setupImageUploader(fileInputId, urlInputId, previewImgId) {
         fileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (file) {
-                // Check file size (recommend under 3MB)
+                // Check file size (recommend under 4MB)
                 if (file.size > 4 * 1024 * 1024) {
                     showAdminToast('File Terlalu Besar', 'Maksimal ukuran foto adalah 4MB agar performa browser optimal.', 'error');
                     return;
                 }
+
+                const dropzone = fileInput.closest('.image-dropzone, label');
+                // Target only textual labels, NEVER replace the material-symbols-outlined icon span
+                const textLabel = dropzone?.querySelector('.text-xs, span:not(.material-symbols-outlined)');
+                const subLabel = dropzone?.querySelector('.text-\\[10px\\], small');
+                const originalText = textLabel?.textContent;
+                const originalSub = subLabel?.textContent;
+
                 // In cloud mode the original file goes to Supabase Storage. Data URL is
                 // only a fallback for local preview mode.
                 if (window.SupabaseBridge?.ready) {
-                    const label = fileInput.closest('div')?.querySelector('span');
-                    const original = label?.textContent;
-                    if (label) label.textContent = 'Mengunggah gambar…';
+                    if (previewImg) previewImg.style.opacity = '0.5';
+                    if (textLabel) textLabel.textContent = 'Mengunggah...';
+                    if (subLabel) subLabel.textContent = 'Menyimpan ke Cloud Storage';
+
                     SupabaseBridge.uploadImage(file).then(url => {
-                        if (previewImg) previewImg.src = url;
+                        if (previewImg) {
+                            previewImg.src = url;
+                            previewImg.style.opacity = '1';
+                        }
                         if (urlInput) urlInput.value = url;
-                        if (label) label.textContent = 'Gambar tersimpan di cloud';
+                        if (textLabel) textLabel.textContent = originalText || 'Upload Foto dari Laptop';
+                        if (subLabel) subLabel.textContent = '✓ Foto tersimpan di cloud';
+                        showAdminToast('Upload Berhasil', 'Gambar berhasil diunggah ke cloud.', 'success');
                     }).catch(error => {
-                        if (label) label.textContent = original || 'Pilih Foto';
+                        if (previewImg) previewImg.style.opacity = '1';
+                        if (textLabel) textLabel.textContent = originalText || 'Upload Foto dari Laptop';
+                        if (subLabel) subLabel.textContent = originalSub || 'PNG, JPG, WEBP (Maks 4MB)';
                         showAdminToast('Upload Gagal', error.message || 'Gagal mengunggah gambar.', 'error');
                     });
                     return;
@@ -101,6 +117,8 @@ function setupImageUploader(fileInputId, urlInputId, previewImgId) {
                     const base64 = event.target.result;
                     if (previewImg) previewImg.src = base64;
                     if (urlInput) urlInput.value = base64;
+                    if (subLabel) subLabel.textContent = '✓ Foto lokal siap disimpan';
+                    showAdminToast('Foto Dipilih', 'Foto lokal berhasil dimuat.', 'info');
                 };
                 reader.readAsDataURL(file);
             }
