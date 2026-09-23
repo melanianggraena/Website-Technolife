@@ -455,6 +455,42 @@
             </div>
         </section>
 
+        <!-- Internal Event Calendar Integration -->
+        <section class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop mb-24" id="event-calendar">
+            <div class="bg-surface-white rounded-2xl p-6 md:p-10 ambient-shadow border border-surface-variant">
+                <div class="flex flex-col lg:flex-row gap-8 lg:items-start lg:justify-between">
+                    <div class="max-w-md">
+                        <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-xs font-semibold mb-4">
+                            <span class="material-symbols-outlined text-sm">event_available</span>
+                            <span>Internal Event Calendar</span>
+                        </div>
+                        <h2 class="font-headline-lg text-2xl md:text-3xl font-bold text-pure-black mb-3">Cek ketersediaan tanggal acara</h2>
+                        <p class="text-secondary text-sm md:text-base mb-6">Tanggal merah sudah terisi acara. Tanggal hijau masih tersedia untuk diajukan melalui sistem Event Calendar.</p>
+                        <div class="flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-secondary mb-6" aria-label="Keterangan kalender">
+                            <span class="inline-flex items-center gap-2"><i class="w-3 h-3 rounded-full bg-red-500"></i> Terisi acara</span>
+                            <span class="inline-flex items-center gap-2"><i class="w-3 h-3 rounded-full bg-emerald-500"></i> Tersedia</span>
+                        </div>
+                        <a href="http://127.0.0.1:8001" class="inline-flex items-center gap-2 bg-primary hover:bg-deep-crimson text-white px-6 py-3 rounded-xl font-semibold text-sm smooth-transition shadow-sm">
+                            Buka Full Event Calendar System
+                            <span class="material-symbols-outlined text-base">open_in_new</span>
+                        </a>
+                    </div>
+                    <div class="w-full max-w-xl" id="eventCalendarWidget" data-calendar-api="http://127.0.0.1:8001/api/public/calendar" data-calendar-url="http://127.0.0.1:8001">
+                        <div class="flex items-center justify-between mb-5">
+                            <button type="button" data-calendar-prev class="w-10 h-10 rounded-xl border border-surface-variant text-secondary hover:text-primary hover:bg-primary/5 transition-colors" aria-label="Bulan sebelumnya"><span class="material-symbols-outlined">chevron_left</span></button>
+                            <h3 data-calendar-month class="font-headline-md text-lg font-bold text-on-surface capitalize" aria-live="polite">Memuat kalender...</h3>
+                            <button type="button" data-calendar-next class="w-10 h-10 rounded-xl border border-surface-variant text-secondary hover:text-primary hover:bg-primary/5 transition-colors" aria-label="Bulan berikutnya"><span class="material-symbols-outlined">chevron_right</span></button>
+                        </div>
+                        <div class="grid grid-cols-7 gap-1 text-center text-[11px] font-bold uppercase tracking-wide text-secondary mb-2">
+                            <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+                        </div>
+                        <div data-calendar-days class="grid grid-cols-7 gap-1.5" aria-label="Kalender ketersediaan acara"></div>
+                        <p data-calendar-status class="text-xs text-secondary mt-4" aria-live="polite">Menghubungkan ke Event Calendar...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Trust & Enterprise CTA Section -->
         <section class="max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop mb-24">
             <div class="bg-surface-white rounded-2xl p-8 md:p-14 ambient-shadow border border-surface-variant flex flex-col md:flex-row items-center justify-between gap-8">
@@ -649,6 +685,7 @@
     <script src="js/data-store.js"></script>
     <script src="js/supabase-sync.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/event-calendar-widget.js"></script>
 </body>
 </html>
 
