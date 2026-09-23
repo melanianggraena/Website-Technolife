@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title id="pageTitle">Detail Layanan - Technolife Group</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/custom.css" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#b1002c",
+                        "deep-crimson": "#A32026",
+                        "primary-fixed-dim": "#ffb3b3",
+                        "on-primary": "#ffffff",
+                        "surface": "#fbf9f8",
+                        "surface-white": "#FFFFFF",
+                        "surface-container": "#efeded",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container-high": "#eae8e7",
+                        "surface-variant": "#e4e2e2",
+                        "on-surface": "#1b1c1c",
+                        "on-background": "#1b1c1c",
+                        "background": "#fbf9f8",
+                        "secondary": "#5f5e5e",
+                        "pure-black": "#000000"
+                    },
+                    spacing: {
+                        "container-max-width": "1280px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "display-lg": ["Poppins"],
+                        "headline-lg": ["Poppins"],
+                        "headline-md": ["Poppins"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pt-[88px]">
+    <!-- TopNavBar (6 Items with Nested Dropdowns) -->
+    <header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm border-b border-white/40 dark:border-white/10 smooth-transition">
+        <div class="flex justify-between items-center max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-4">
+            <!-- 1. Brand Logo / Nama (Home Link) -->
+            <a href="index.html" class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed-dim hover:scale-102 transition-transform">
+                Technolife Group
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+                <!-- 1. Home -->
+                <a href="index.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Home</a>
+
+                <!-- 2. Profile (Dropdown) -->
+                <div class="nav-dropdown-wrapper">
+                    <button type="button" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 flex items-center gap-1 font-semibold outline-none">
+                        <span>Profile</span>
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </button>
+                    <div class="nav-dropdown-menu">
+                        <a href="history.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">history_edu</span>
+                            <span>Profil dan Sejarah</span>
+                        </a>
+                        <a href="org-structure.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">corporate_fare</span>
+                            <span>Struktur Perusahaan</span>
+                        </a>
+                        <a href="portfolio.html" class="flex items-center gap-2 px-4 py-2.5 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">
+                            <span class="material-symbols-outlined text-base text-primary">cases</span>
+                            <span>Portfolio Proyek</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Partnership -->
+                <a href="partnerships.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Partnership</a>
+
+                <!-- 4. Product and Service (Nested Dropdown) -->
+                <div class="nav-dropdown-wrapper">
+                    <a href="services.html" class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md py-2 flex items-center gap-1 outline-none">
+                        <span>Product &amp; Services</span>
+                        <span class="material-symbols-outlined text-base">expand_more</span>
+                    </a>
+                    <div class="nav-dropdown-menu">
+                        <!-- Fasilitas Dropdown -->
+                        <div class="nested-dropdown-wrapper">
+                            <div class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-on-surface hover:text-primary hover:bg-surface-container cursor-pointer transition-colors group">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base text-primary">domain</span>
+                                    <span>Fasilitas dan Service</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                            </div>
+                            <div class="nested-dropdown-menu">
+                                <div class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-primary border-b border-surface-variant mb-1">Fasilitas &amp; Spaces</div>
+                                <a href="service-detail.html?id=needs" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Needs &amp; Essentials</a>
+                                <a href="service-detail.html?id=studyspace" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Study Space</a>
+                                <a href="service-detail.html?id=technobillyard" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Technobillyard</a>
+                                <a href="service-detail.html?id=ballroom" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Bhimasena Ballroom</a>
+                                <a href="service-detail.html?id=trainingcenter" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Training Center</a>
+                                <a href="service-detail.html?id=technofit" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Techno Fit</a>
+                                <a href="service-detail.html?id=decoin" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Deco.in Creative Studio</a>
+                                <a href="service-detail.html?id=meetingroom" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Smart Meeting Room</a>
+                                <a href="service-detail.html?id=coworking" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Travail Coworking</a>
+                                <a href="service-detail.html?id=virtualoffice" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Virtual Office</a>
+                            </div>
+                        </div>
+
+                        <!-- F&B Dropdown -->
+                        <div class="nested-dropdown-wrapper">
+                            <div class="flex items-center justify-between px-4 py-2.5 text-xs font-semibold text-on-surface hover:text-primary hover:bg-surface-container cursor-pointer transition-colors group">
+                                <span class="flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-base text-primary">restaurant</span>
+                                    <span>Food and Beverage</span>
+                                </span>
+                                <span class="material-symbols-outlined text-sm group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+                            </div>
+                            <div class="nested-dropdown-menu">
+                                <div class="px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider text-primary border-b border-surface-variant mb-1">Food &amp; Beverage</div>
+                                <a href="service-detail.html?id=cateringbrownsugar" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Dapur Satelit &amp; Catering</a>
+                                <a href="service-detail.html?id=kallsmaison" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Kals Maison Bakery</a>
+                                <a href="service-detail.html?id=skywatchresto" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Skywatch Resto</a>
+                                <a href="service-detail.html?id=technocoffee" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Betterfly Rooftop Cafe</a>
+                                <a href="service-detail.html?id=frozenfood" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Jayanti Coffee &amp; Eatery</a>
+                                <a href="service-detail.html?id=santapin" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Santapin Mealbox</a>
+                                <a href="service-detail.html?id=gampangenak" class="block px-4 py-2 text-xs text-on-surface hover:text-primary hover:bg-surface-container transition-colors">Gampang Enak Food Hub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Karir -->
+                <a href="careers.html" class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Karir</a>
+
+                <!-- 6. Kontak -->
+                <button type="button" data-open-contact class="text-on-surface hover:text-primary transition-colors font-label-md text-label-md py-2 font-semibold">Kontak</button>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button type="button" data-open-search class="p-2 rounded-lg text-on-surface hover:text-primary hover:bg-surface-container" title="Pencarian Cepat">
+                    <span class="material-symbols-outlined text-[22px]">search</span>
+                </button>
+                <button type="button" data-open-login class="hidden md:block font-label-md text-label-md text-on-surface hover:text-primary transition-colors">Log In</button>
+                <button type="button" data-open-contact class="bg-primary text-on-primary font-label-md text-label-md px-6 py-2.5 rounded-xl hover:scale-[1.02] hover:bg-deep-crimson transition-all duration-300 shadow-sm">Contact Us</button>
+                <button type="button" data-mobile-menu-toggle class="lg:hidden text-on-surface p-1.5 rounded-lg">
+                    <span class="material-symbols-outlined text-[26px]">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mobileNavBackdrop" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <div id="mobileNavDrawer" class="fixed top-0 left-0 h-full w-[310px] bg-surface-white z-50 shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between p-6 overflow-y-auto">
+        <div>
+            <div class="flex items-center justify-between pb-5 border-b border-surface-variant">
+                <a href="index.html" class="font-display-lg text-xl font-bold text-primary">Technolife Group</a>
+                <button id="closeMobileNav" class="text-secondary hover:text-on-surface p-1.5 rounded-lg">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-1.5 mt-5">
+                <a href="index.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Home</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">home</span>
+                </a>
+                <a href="services.html" class="text-primary py-2.5 px-3 rounded-xl font-semibold bg-primary/10 flex items-center justify-between">
+                    <span>Katalog Semua Layanan</span>
+                    <span class="material-symbols-outlined text-sm text-primary">category</span>
+                </a>
+                <a href="partnerships.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Partnership</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">handshake</span>
+                </a>
+                <a href="careers.html" class="text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Karir</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">work</span>
+                </a>
+                <button type="button" data-open-contact class="w-full text-left text-on-surface hover:text-primary py-2.5 px-3 rounded-xl font-semibold hover:bg-surface-container flex items-center justify-between">
+                    <span>Kontak</span>
+                    <span class="material-symbols-outlined text-sm text-secondary">call</span>
+                </button>
+            </nav>
+        </div>
+        <div class="pt-6 border-t border-surface-variant flex flex-col gap-3">
+            <button data-open-login class="w-full text-center py-2.5 font-semibold text-primary border border-primary/30 rounded-xl hover:bg-primary/5">Log In</button>
+            <button data-open-contact class="w-full text-center py-2.5 font-semibold text-white bg-primary rounded-xl hover:bg-deep-crimson shadow-md">Hubungi Kami</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 w-full">
+        <!-- Breadcrumb Navigation -->
+        <nav class="flex items-center gap-2 text-xs text-secondary mb-8 overflow-x-auto pb-2">
+            <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">home</span>
+                <span>Home</span>
+            </a>
+            <span>/</span>
+            <a href="services.html" class="hover:text-primary transition-colors">Product &amp; Services</a>
+            <span>/</span>
+            <span id="breadcrumbCategory" class="text-secondary font-medium">Fasilitas</span>
+            <span>/</span>
+            <span id="breadcrumbTitle" class="text-primary font-bold">Detail Layanan</span>
+        </nav>
+
+        <!-- Dynamic Content Section -->
+        <div id="serviceDetailContainer" class="space-y-12">
+            <!-- Top Header & Actions -->
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-surface-variant">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <span id="detailBadge" class="bg-primary/10 text-primary text-xs font-bold px-3.5 py-1 rounded-full border border-primary/20">
+                            Workspace Essentials
+                        </span>
+                        <span id="detailSpecs" class="bg-surface-container text-secondary text-xs font-semibold px-3 py-1 rounded-full">
+                            Private &amp; Dedicated
+                        </span>
+                    </div>
+                    <h1 id="detailTitle" class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-background font-bold mb-2">
+                        Memuat Layanan...
+                    </h1>
+                    <p id="detailShortDesc" class="text-body-md text-secondary max-w-2xl">
+                        Informasi lengkap fasilitas dan operasional layanan terpadu Technolife Group.
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center gap-3">
+                    <button id="bookNowBtn" type="button" class="bg-primary hover:bg-deep-crimson text-white px-7 py-3 rounded-xl font-semibold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-base">calendar_month</span>
+                        <span id="bookNowBtnText">Reservasi Sekarang</span>
+                    </button>
+                    <a id="waContactBtn" href="https://wa.me/628112298880" target="_blank" class="bg-surface-white hover:bg-surface-container border border-surface-variant text-on-surface px-6 py-3 rounded-xl font-semibold text-sm transition-all flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-base">chat</span>
+                        <span>Tanya via WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- PHOTO GALLERY SECTION (Aspect Ratio Protected & Auto-Adjust Frame) -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Main Featured Photo (Auto-Adjust, Never Cropped) -->
+                <div class="lg:col-span-8 rounded-2xl overflow-hidden ambient-shadow border border-surface-variant bg-gradient-to-b from-surface-container-low via-surface-container-lowest to-surface-container-low relative group aspect-[16/10] max-h-[480px] flex items-center justify-center p-6">
+                    <img id="detailMainImageBg" class="absolute inset-0 w-full h-full object-cover blur-2xl opacity-20 scale-125 select-none pointer-events-none" alt="" src=""/>
+                    <img id="detailMainImage" class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-102 transition-transform duration-700 drop-shadow-md" alt="Detail Image" src=""/>
+                    <div class="absolute bottom-4 left-4 z-20 bg-pure-black/60 backdrop-blur-md px-3 py-1 rounded-full text-white text-[11px] font-semibold flex items-center gap-1.5 shadow-sm">
+                        <span class="material-symbols-outlined text-sm">photo_camera</span>
+                        <span>Dokumentasi Resmi Technolife</span>
+                    </div>
+                </div>
+
+                <!-- Secondary Gallery Thumbnails (Fixed Frame Ratio) -->
+                <div id="galleryThumbnails" class="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-4">
+                    <!-- Dynamic thumbs injected here -->
+                </div>
+            </section>
+
+            <!-- DETAIL CONTENT & SIDEBAR GRID -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Column: Description, Features & Amenities -->
+                <div class="lg:col-span-8 space-y-8">
+                    <!-- Detailed Overview Card -->
+                    <div class="bg-surface-white rounded-2xl p-8 border border-surface-variant ambient-shadow space-y-4">
+                        <h2 class="font-headline-md text-xl font-bold text-on-surface flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">description</span>
+                            <span>Deskripsi &amp; Konsep Layanan</span>
+                        </h2>
+                        <p id="detailFullDescription" class="text-body-md text-secondary leading-relaxed whitespace-pre-line">
+                            Memuat deskripsi detail layanan...
+                        </p>
+                    </div>
+
+                    <!-- Features & Amenities List Card -->
+                    <div class="bg-surface-white rounded-2xl p-8 border border-surface-variant ambient-shadow space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h2 class="font-headline-md text-xl font-bold text-on-surface flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">verified</span>
+                                <span>Fasilitas &amp; Keunggulan yang Tersedia</span>
+                            </h2>
+                            <span class="text-xs text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">Standar Enterprise</span>
+                        </div>
+                        <div id="detailFeaturesList" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Feature items inserted dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Operational Hours & Location Card -->
+                    <div class="bg-surface-container-low rounded-2xl p-8 border border-surface-variant space-y-4">
+                        <h3 class="font-headline-md text-lg font-bold text-on-surface flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">location_on</span>
+                            <span>Lokasi &amp; Aksesibilitas Gedung</span>
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                            <div class="p-4 bg-surface-white rounded-xl border border-surface-variant/70">
+                                <span class="text-xs text-secondary font-bold block mb-1">Posisi di Gedung:</span>
+                                <p id="detailLocation" class="font-semibold text-on-surface">Technolife Building Jatinangor</p>
+                            </div>
+                            <div class="p-4 bg-surface-white rounded-xl border border-surface-variant/70">
+                                <span class="text-xs text-secondary font-bold block mb-1">Alamat Lengkap:</span>
+                                <p class="text-secondary text-xs">Jl. Raya Ir. Soekarno No. 4-6, Cibeusi, Jatinangor, Sumedang (Dekat Kampus UNPAD, ITB, IPDN, IKOPIN)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Sticky Booking & Information Card -->
+                <div class="lg:col-span-4 sticky top-28 space-y-6">
+                    <div class="bg-surface-white rounded-2xl p-6 md:p-8 border-2 border-primary/20 ambient-shadow space-y-6 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-28 h-28 bg-primary/5 rounded-full -mr-10 -mt-10 pointer-events-none"></div>
+
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-secondary">Estimasi Biaya / Penawaran</span>
+                            <div id="detailPriceDisplay" class="font-display-lg text-2xl md:text-3xl font-bold text-primary mt-1">
+                                Hubungi Kami
+                            </div>
+                            <p class="text-xs text-secondary mt-1">Harga dapat bervariasi sesuai durasi, paket, atau jumlah pax.</p>
+                        </div>
+
+                        <div class="space-y-3 pt-4 border-t border-surface-variant">
+                            <button id="sidebarBookBtn" type="button" class="w-full bg-primary hover:bg-deep-crimson text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-base">event_available</span>
+                                <span>Ajukan Reservasi / Booking</span>
+                            </button>
+                            <a href="tel:+628112298880" class="w-full bg-surface-container-low hover:bg-surface-container text-on-surface py-3 px-4 rounded-xl font-semibold text-xs border border-surface-variant transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-base text-primary">call</span>
+                                <span>Konsultasi Cepat: 0811-2298-880</span>
+                            </a>
+                        </div>
+
+                        <div class="p-4 bg-surface-container-lowest rounded-xl border border-surface-variant/80 space-y-2 text-xs text-secondary">
+                            <div class="flex items-center gap-2 text-on-surface font-semibold">
+                                <span class="material-symbols-outlined text-primary text-base">check_circle</span>
+                                <span>Jaminan Layanan Terbaik</span>
+                            </div>
+                            <p>Konfirmasi cepat dari tim konsultan reservasi resmi Technolife dalam waktu maksimal 1x24 jam kerja.</p>
+                        </div>
+                    </div>
+
+                    <!-- Category Switcher Banner -->
+                    <div class="bg-surface-container-low rounded-2xl p-6 border border-surface-variant text-center space-y-3">
+                        <span class="material-symbols-outlined text-3xl text-primary">swap_horiz</span>
+                        <h4 class="font-headline-md text-sm font-bold">Ingin Melihat Layanan Lain?</h4>
+                        <p class="text-xs text-secondary">Kembali ke katalog lengkap atau telusuri 10 fasilitas &amp; 7 brand kuliner lainnya.</p>
+                        <a href="services.html" class="inline-flex items-center gap-1 text-primary text-xs font-bold hover:underline">
+                            <span>Buka Katalog Product &amp; Services</span>
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELATED / OTHER SERVICES SECTION (Carousel/Grid with Fixed Frame Ratios) -->
+            <section class="pt-12 border-t border-surface-variant">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-primary">Rekomendasi Terkait</span>
+                        <h3 class="font-headline-lg text-xl md:text-2xl font-bold">Jelajahi Pilihan Lainnya</h3>
+                    </div>
+                    <a href="services.html" class="text-primary text-xs font-bold hover:underline flex items-center gap-1">
+                        <span>Lihat Semua (17 Lini)</span>
+                        <span class="material-symbols-outlined text-sm">east</span>
+                    </a>
+                </div>
+
+                <div id="relatedServicesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Related cards rendered dynamically -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-container dark:bg-inverse-surface w-full py-16 border-t border-surface-variant mt-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop">
+            <div class="md:col-span-1 mb-8 md:mb-0">
+                <a href="index.html" class="font-display-lg text-headline-md font-bold text-primary dark:text-primary-fixed-dim mb-4 block">
+                    Technolife Group
+                </a>
+                <p class="font-label-sm text-label-sm text-secondary">
+                    &copy; 2026 PT Technolife Kreasi Industri Utama. All rights reserved.
+                </p>
+            </div>
+            <div class="flex flex-col space-y-2 text-xs text-secondary">
+                <span class="font-bold text-on-surface uppercase mb-2">Navigasi</span>
+                <a href="index.html" class="hover:text-primary">Home</a>
+                <a href="services.html" class="hover:text-primary">Product &amp; Services</a>
+                <a href="history.html" class="hover:text-primary">Profil &amp; Sejarah</a>
+                <a href="careers.html" class="hover:text-primary">Karir</a>
+            </div>
+            <div class="flex flex-col space-y-2 text-xs text-secondary">
+                <span class="font-bold text-on-surface uppercase mb-2">Hubungi Kami</span>
+                <p>Jl. Raya Ir. Soekarno No. 4-6, Jatinangor, Sumedang</p>
+                <p>WhatsApp: +62 811 2298 880</p>
+                <p>Email: info@technolife.co.id</p>
+            </div>
+            <div class="flex flex-col space-y-2 text-xs text-secondary">
+                <span class="font-bold text-on-surface uppercase mb-2">Jam Operasional</span>
+                <p>Setiap Hari: 08:00 - 22:00 WIB</p>
+                <p>One Stop Business &amp; Entertainment</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Modals -->
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-surface-white w-full max-w-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-surface-variant relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="font-headline-md text-2xl font-bold text-primary">Reservasi Layanan</h3>
+                    <p class="text-secondary text-sm">Isi formulir untuk pemesanan fasilitas atau F&amp;B</p>
+                </div>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="bookingForm" class="space-y-4">
+                <div>
+                    <label for="bkgServiceName" class="block text-xs font-semibold text-on-surface mb-1">Layanan yang Dipilih</label>
+                    <input type="text" id="bkgServiceName" readonly class="w-full text-sm font-bold text-primary rounded-xl border border-surface-variant bg-surface-container-high px-4 py-2.5 outline-none"/>
+                </div>
+                <div>
+                    <label for="bkgName" class="block text-xs font-semibold text-on-surface mb-1">Nama Lengkap / Instansi *</label>
+                    <input type="text" id="bkgName" required placeholder="Contoh: Budi Santoso" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="bkgEmail" class="block text-xs font-semibold text-on-surface mb-1">Email *</label>
+                        <input type="email" id="bkgEmail" required placeholder="budi@email.com" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label for="bkgPhone" class="block text-xs font-semibold text-on-surface mb-1">No. WhatsApp *</label>
+                        <input type="tel" id="bkgPhone" required placeholder="08123456789" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="bkgDate" class="block text-xs font-semibold text-on-surface mb-1">Rencana Tanggal *</label>
+                        <input type="date" id="bkgDate" required class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label for="bkgTime" class="block text-xs font-semibold text-on-surface mb-1">Waktu / Sesi</label>
+                        <input type="text" id="bkgTime" placeholder="Contoh: 09:00 - 15:00 WIB" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="bkgPax" class="block text-xs font-semibold text-on-surface mb-1">Estimasi Jumlah Peserta / Pax</label>
+                    <input type="text" id="bkgPax" placeholder="Contoh: 50 Orang" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"/>
+                </div>
+                <div>
+                    <label for="bkgNotes" class="block text-xs font-semibold text-on-surface mb-1">Catatan Tambahan</label>
+                    <textarea id="bkgNotes" rows="3" placeholder="Kebutuhan khusus (sound system, layout meja, menu katering, dll)" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"></textarea>
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" data-close-modal class="px-5 py-2.5 rounded-xl border border-surface-variant text-sm font-semibold hover:bg-surface-container smooth-transition">Batal</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-deep-crimson text-white text-sm font-semibold smooth-transition shadow-sm flex items-center gap-1.5">
+                        <span>Kirim Reservasi</span>
+                        <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-overlay modal-hidden fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="modal-content bg-surface-white w-full max-w-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-surface-variant relative max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h3 class="font-headline-md text-2xl font-bold text-primary">Hubungi Technolife</h3>
+                    <p class="text-secondary text-sm">Kirim pesan kepada tim kami</p>
+                </div>
+                <button type="button" data-close-modal class="text-secondary hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label for="contactName" class="block text-xs font-semibold text-on-surface mb-1">Nama Lengkap *</label>
+                    <input type="text" id="contactName" required class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 outline-none"/>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label for="contactEmail" class="block text-xs font-semibold text-on-surface mb-1">Email *</label>
+                        <input type="email" id="contactEmail" required class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 outline-none"/>
+                    </div>
+                    <div>
+                        <label for="contactPhone" class="block text-xs font-semibold text-on-surface mb-1">No. HP / WA</label>
+                        <input type="tel" id="contactPhone" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 outline-none"/>
+                    </div>
+                </div>
+                <div>
+                    <label for="contactMessage" class="block text-xs font-semibold text-on-surface mb-1">Pesan *</label>
+                    <textarea id="contactMessage" required rows="4" class="w-full text-sm rounded-xl border border-surface-variant bg-surface-container-low px-4 py-2.5 outline-none"></textarea>
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" data-close-modal class="px-5 py-2.5 rounded-xl border border-surface-variant text-sm font-semibold hover:bg-surface-container">Batal</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-primary hover:bg-deep-crimson text-white text-sm font-semibold">Kirim Pesan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/data-store.js"></script>
+    <script src="js/supabase-sync.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Detail Renderer Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderServiceDetailPage();
+        });
+
+        function renderServiceDetailPage() {
+            const params = new URLSearchParams(window.location.search);
+            const targetId = params.get('id') || 'ballroom';
+
+            const store = window.TechnoDataStore ? window.TechnoDataStore.getAll() : null;
+            if (!store) return;
+
+            const allItems = [...(store.facilities || []), ...(store.fnb || [])];
+            let item = allItems.find(i => i.id === targetId);
+
+            if (!item && allItems.length) {
+                item = allItems[0];
+            }
+            if (!item) return;
+
+            const isFnb = store.fnb && store.fnb.some(f => f.id === item.id);
+            const categoryName = isFnb ? 'Food & Beverage' : 'Fasilitas & Service';
+
+            // 1. Meta & Breadcrumbs
+            document.title = item.name + ' - Detail Layanan Technolife';
+            const pageTitleEl = document.getElementById('pageTitle');
+            if (pageTitleEl) pageTitleEl.textContent = item.name + ' - Technolife Group';
+
+            const breadcrumbCat = document.getElementById('breadcrumbCategory');
+            if (breadcrumbCat) breadcrumbCat.textContent = categoryName;
+
+            const breadcrumbTit = document.getElementById('breadcrumbTitle');
+            if (breadcrumbTit) breadcrumbTit.textContent = item.name;
+
+            // 2. Header Info
+            const badgeEl = document.getElementById('detailBadge');
+            if (badgeEl) badgeEl.textContent = item.badge || (isFnb ? 'Artisanal Culinary' : 'Premium Space');
+
+            const specsEl = document.getElementById('detailSpecs');
+            if (specsEl) specsEl.textContent = item.specs || item.hours || 'Standar Enterprise';
+
+            const titleEl = document.getElementById('detailTitle');
+            if (titleEl) titleEl.textContent = item.name;
+
+            const shortDescEl = document.getElementById('detailShortDesc');
+            if (shortDescEl) shortDescEl.textContent = item.shortDesc || item.description;
+
+            // 3. Price & Location
+            const priceEl = document.getElementById('detailPriceDisplay');
+            if (priceEl) priceEl.textContent = item.price || item.priceRange || 'Hubungi Penjualan';
+
+            const locEl = document.getElementById('detailLocation');
+            if (locEl) locEl.textContent = item.location || 'Technolife Building, Jl. Raya Ir. Soekarno No. 4-6 Jatinangor';
+
+            // 4. Main Photo & Gallery
+            const mainImg = document.getElementById('detailMainImage');
+            const mainImgBg = document.getElementById('detailMainImageBg');
+            if (mainImg && item.image) {
+                mainImg.src = item.image;
+                mainImg.alt = item.name;
+                if (mainImgBg) mainImgBg.src = item.image;
+            }
+
+            const galleryContainer = document.getElementById('galleryThumbnails');
+            if (galleryContainer) {
+                const galleryImages = item.gallery && item.gallery.length ? item.gallery : [item.image];
+
+                galleryContainer.innerHTML = galleryImages.slice(0, 3).map((imgUrl, idx) => `
+                    <div onclick="swapMainImage('${imgUrl}')" class="rounded-xl overflow-hidden border border-surface-variant bg-gradient-to-b from-surface-container-low to-surface-container cursor-pointer relative group aspect-[16/10] max-h-[140px] hover:border-primary transition-all flex items-center justify-center p-3">
+                        <img class="absolute inset-0 w-full h-full object-cover blur-md opacity-25 scale-125 select-none pointer-events-none" alt="" src="${imgUrl}"/>
+                        <img class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-105 transition-transform duration-500 drop-shadow-sm" alt="Galeri ${item.name} ${idx + 1}" src="${imgUrl}"/>
+                        <div class="absolute inset-0 z-20 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined text-sm">visibility</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // 5. Full Description & Features
+            const fullDescEl = document.getElementById('detailFullDescription');
+            if (fullDescEl) {
+                fullDescEl.textContent = item.description || item.shortDesc;
+            }
+
+            const featuresList = document.getElementById('detailFeaturesList');
+            if (featuresList) {
+                const defaultFeatures = isFnb ? [
+                    "Bahan Baku Segar Pilihan & Tersertifikasi Halal",
+                    "Dapur Higienis Berstandar Food Grade",
+                    "Layanan Pesan Antar & Katering Acara",
+                    "Area Makan Nyaman Ber-AC & WiFi Cepat",
+                    "Pilihan Menu Variatif untuk Segala Selera",
+                    "Pelayanan Ramah & Protokol Kebersihan Terjamin"
+                ] : [
+                    "Ruang Ber-AC & Pencahayaan Ergonomis",
+                    "Akses Internet Serat Optik Berkecepatan Tinggi",
+                    "Dukungan Kelistrikan & Stopkontak Mandiri",
+                    "Keamanan & Akses Terpantau CCTV 24 Jam",
+                    "Area Parkir Luas & Akses Loading Dock",
+                    "Dukungan Manajemen Fasilitas Profesional"
+                ];
+
+                const features = item.features && item.features.length ? item.features : defaultFeatures;
+
+                featuresList.innerHTML = features.map(feat => `
+                    <div class="flex items-start gap-3 p-3.5 bg-surface-container-low rounded-xl border border-surface-variant/50">
+                        <span class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">check_circle</span>
+                        <span class="text-xs font-semibold text-on-surface">${feat}</span>
+                    </div>
+                `).join('');
+            }
+
+            // 6. Booking Actions
+            const openBooking = () => {
+                if (typeof openBookingModal === 'function') {
+                    openBookingModal(item.name);
+                } else {
+                    const modal = document.getElementById('bookingModal');
+                    const field = document.getElementById('bkgServiceName');
+                    if (field) field.value = item.name;
+                    if (modal) {
+                        modal.classList.remove('modal-hidden');
+                        modal.classList.add('modal-visible');
+                    }
+                }
+            };
+
+            const bookBtn = document.getElementById('bookNowBtn');
+            if (bookBtn) bookBtn.onclick = openBooking;
+
+            const sidebarBtn = document.getElementById('sidebarBookBtn');
+            if (sidebarBtn) sidebarBtn.onclick = openBooking;
+
+            // WhatsApp Button Link
+            const waBtn = document.getElementById('waContactBtn');
+            if (waBtn) {
+                const textMsg = encodeURIComponent("Halo Admin Technolife, saya ingin menanyakan informasi & reservasi untuk: " + item.name);
+                waBtn.href = "https://wa.me/628112298880?text=" + textMsg;
+            }
+
+            // 7. Related Items
+            const relatedGrid = document.getElementById('relatedServicesGrid');
+            if (relatedGrid) {
+                const otherItems = allItems.filter(i => i.id !== item.id).slice(0, 3);
+                relatedGrid.innerHTML = otherItems.map(other => {
+                    const otherIsFnb = store.fnb && store.fnb.some(f => f.id === other.id);
+                    return `
+                        <div class="bg-surface-white rounded-2xl overflow-hidden border border-surface-variant ambient-shadow hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                            <div class="h-48 w-full relative overflow-hidden bg-gradient-to-b from-surface-container-low via-surface-container-lowest to-surface-container-low flex items-center justify-center p-3 border-b border-surface-variant">
+                                <img class="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-125 select-none pointer-events-none" alt="" src="${other.image}"/>
+                                <span class="absolute top-3 left-3 z-20 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-bold text-primary shadow-sm border border-black/5">
+                                    ${other.badge || (otherIsFnb ? 'Food & Beverage' : 'Fasilitas')}
+                                </span>
+                                <img class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-105 transition-transform duration-500 drop-shadow-sm" alt="${other.name}" src="${other.image}"/>
+                            </div>
+                            <div class="p-6 flex flex-col justify-between flex-grow">
+                                <div>
+                                    <h4 class="font-headline-md text-lg font-bold mb-1.5 group-hover:text-primary transition-colors">${other.name}</h4>
+                                    <p class="text-xs text-secondary line-clamp-2 leading-relaxed mb-4">${other.shortDesc || other.description}</p>
+                                </div>
+                                <div class="pt-4 border-t border-surface-variant flex items-center justify-between">
+                                    <span class="text-xs font-bold text-primary">${other.price || other.priceRange || 'Hubungi Kami'}</span>
+                                    <a href="service-detail.html?id=${other.id}" class="inline-flex items-center gap-1 text-xs font-bold text-on-surface hover:text-primary transition-colors">
+                                        <span>Detail</span>
+                                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        function swapMainImage(url) {
+            const mainImg = document.getElementById('detailMainImage');
+            const mainImgBg = document.getElementById('detailMainImageBg');
+            if (mainImg) {
+                mainImg.style.opacity = '0.5';
+                setTimeout(() => {
+                    mainImg.src = url;
+                    if (mainImgBg) mainImgBg.src = url;
+                    mainImg.style.opacity = '1';
+                }, 150);
+            }
+        }, 150);
+        }
+
+        window.addEventListener('technoStoreUpdated', renderServiceDetailPage);
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'technolife_master_store_v1') {
+                renderServiceDetailPage();
+            }
+        }
+        });
+    </script>
+</body>
+</html>
+

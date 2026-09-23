@@ -307,14 +307,15 @@ function renderFacilitiesList() {
 
     grid.innerHTML = facilities.map((f, index) => `
         <div class="admin-card overflow-hidden flex flex-col justify-between group">
-            <div class="relative h-48 bg-gray-100 overflow-hidden">
-                <img src="${f.image}" alt="${f.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                <div class="absolute top-3 left-3">
+            <div class="relative h-48 bg-gradient-to-b from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center p-3 border-b border-gray-100">
+                <img src="${f.image}" alt="" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-125 select-none pointer-events-none"/>
+                <img src="${f.image}" alt="${f.name}" class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"/>
+                <div class="absolute top-3 left-3 z-20">
                     <span class="bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-bold text-primary shadow-sm">
                         ${f.badge}
                     </span>
                 </div>
-                <div class="absolute top-3 right-3">
+                <div class="absolute top-3 right-3 z-20">
                     <span class="badge-status ${f.active ? 'badge-confirmed' : 'badge-cancelled'}">
                         ${f.active ? 'Aktif' : 'Non-Aktif'}
                     </span>
@@ -333,7 +334,7 @@ function renderFacilitiesList() {
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                    <a href="../services.html#${f.id}" target="_blank" class="text-xs text-gray-400 hover:text-primary flex items-center gap-1">
+                    <a href="../service-detail.html?id=${f.id}" target="_blank" class="text-xs text-gray-400 hover:text-primary flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">visibility</span> Cek di Web
                     </a>
                     <button type="button" onclick="openEditFacilityModal('${f.id}')" class="px-3.5 py-1.5 rounded-lg bg-primary hover:bg-red-800 text-white text-xs font-semibold flex items-center gap-1 shadow-sm transition-all">
@@ -399,14 +400,15 @@ function renderFnbList() {
 
     grid.innerHTML = items.map((f, index) => `
         <div class="admin-card overflow-hidden flex flex-col justify-between group">
-            <div class="relative h-48 bg-gray-100 overflow-hidden">
-                <img src="${f.image}" alt="${f.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"/>
-                <div class="absolute top-3 left-3">
+            <div class="relative h-48 bg-gradient-to-b from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center p-3 border-b border-gray-100">
+                <img src="${f.image}" alt="" class="absolute inset-0 w-full h-full object-cover blur-xl opacity-20 scale-125 select-none pointer-events-none"/>
+                <img src="${f.image}" alt="${f.name}" class="relative z-10 max-h-full max-w-full w-auto h-auto object-contain mx-auto group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"/>
+                <div class="absolute top-3 left-3 z-20">
                     <span class="bg-white/95 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-bold text-primary shadow-sm">
                         ${f.badge}
                     </span>
                 </div>
-                <div class="absolute top-3 right-3">
+                <div class="absolute top-3 right-3 z-20">
                     <span class="badge-status ${f.active ? 'badge-confirmed' : 'badge-cancelled'}">
                         ${f.active ? 'Buka' : 'Tutup'}
                     </span>
@@ -431,7 +433,7 @@ function renderFnbList() {
                     </div>
                 </div>
                 <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                    <a href="../services.html#${f.id}" target="_blank" class="text-xs text-gray-400 hover:text-primary flex items-center gap-1">
+                    <a href="../service-detail.html?id=${f.id}" target="_blank" class="text-xs text-gray-400 hover:text-primary flex items-center gap-1">
                         <span class="material-symbols-outlined text-sm">visibility</span> Cek di Web
                     </a>
                     <button type="button" onclick="openEditFnbModal('${f.id}')" class="px-3.5 py-1.5 rounded-lg bg-primary hover:bg-red-800 text-white text-xs font-semibold flex items-center gap-1 shadow-sm transition-all">

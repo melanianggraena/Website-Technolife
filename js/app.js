@@ -7,25 +7,25 @@
 // Search Index Data for Instant Live Search
 const SEARCH_INDEX = [
     // Facilities & Services
-    { title: "Needs", category: "Facilities & Services", url: "services.html#needs", desc: "Corporate essential workspace and tailored enterprise facilities." },
-    { title: "Study Space", category: "Facilities & Services", url: "services.html#studyspace", desc: "Dedicated high-focus study and learning space with high-speed internet." },
-    { title: "Technobillyard", category: "Facilities & Services", url: "services.html#technobillyard", desc: "Premium billiard club, recreation, and modern executive entertainment." },
-    { title: "Ballroom", category: "Facilities & Services", url: "services.html#ballroom", desc: "Grand multifunctional ballroom for galas, seminars, weddings, and corporate summits." },
-    { title: "Training Center", category: "Facilities & Services", url: "services.html#trainingcenter", desc: "Equipped executive training suites, workshops, and certified seminar halls." },
-    { title: "Techno Fit", category: "Facilities & Services", url: "services.html#technofit", desc: "State-of-the-art wellness centers and corporate gym facilities." },
-    { title: "Deco.in", category: "Facilities & Services", url: "services.html#decoin", desc: "Interior design, aesthetic space decoration, and architecture solutions." },
-    { title: "Meeting Room", category: "Facilities & Services", url: "services.html#meetingroom", desc: "Acoustic-treated smart meeting rooms with video conference technology." },
-    { title: "Coworking", category: "Facilities & Services", url: "services.html#coworking", desc: "Dynamic shared hot-desks and dedicated team co-working hubs." },
-    { title: "Virtual Office", category: "Facilities & Services", url: "services.html#virtualoffice", desc: "Prestigious CBD business address, mail handling, and call answering." },
+    { title: "Needs & Essentials", category: "Facilities & Services", url: "service-detail.html?id=needs", desc: "Corporate essential workspace and tailored enterprise facilities." },
+    { title: "Study Space", category: "Facilities & Services", url: "service-detail.html?id=studyspace", desc: "Dedicated high-focus study and learning space with high-speed internet." },
+    { title: "Technobillyard", category: "Facilities & Services", url: "service-detail.html?id=technobillyard", desc: "Premium billiard club, recreation, and modern executive entertainment." },
+    { title: "Bhimasena Ballroom", category: "Facilities & Services", url: "service-detail.html?id=ballroom", desc: "Grand multifunctional ballroom for galas, seminars, weddings, and corporate summits." },
+    { title: "Training Center", category: "Facilities & Services", url: "service-detail.html?id=trainingcenter", desc: "Equipped executive training suites, workshops, and certified seminar halls." },
+    { title: "Techno Fit", category: "Facilities & Services", url: "service-detail.html?id=technofit", desc: "State-of-the-art wellness centers and corporate gym facilities." },
+    { title: "Deco.in Creative Studio", category: "Facilities & Services", url: "service-detail.html?id=decoin", desc: "Interior design, aesthetic space decoration, and architecture solutions." },
+    { title: "Smart Meeting Room", category: "Facilities & Services", url: "service-detail.html?id=meetingroom", desc: "Acoustic-treated smart meeting rooms with video conference technology." },
+    { title: "Travail Coworking", category: "Facilities & Services", url: "service-detail.html?id=coworking", desc: "Dynamic shared hot-desks and dedicated team co-working hubs." },
+    { title: "Virtual Office", category: "Facilities & Services", url: "service-detail.html?id=virtualoffice", desc: "Prestigious CBD business address, mail handling, and call answering." },
 
     // Food & Beverage
-    { title: "Catering Brown Sugar", category: "Food & Beverage", url: "services.html#cateringbrownsugar", desc: "Bespoke corporate event catering, banquets, and buffet culinary service." },
-    { title: "Kall's Maison", category: "Food & Beverage", url: "services.html#kallsmaison", desc: "Artisanal pastries, French bakery delicacies, and signature coffee." },
-    { title: "Skywatch Resto", category: "Food & Beverage", url: "services.html#skywatchresto", desc: "Rooftop panoramic dining with sky views and international cuisine." },
-    { title: "Techno Coffee", category: "Food & Beverage", url: "services.html#technocoffee", desc: "Specialty roasted coffee bar crafted for productive workdays." },
-    { title: "Frozen Food", category: "Food & Beverage", url: "services.html#frozenfood", desc: "Ready-to-cook gourmet packaged meals and hygienic frozen delicacies." },
-    { title: "Santapin", category: "Food & Beverage", url: "services.html#santapin", desc: "Daily nutritious meals and corporate lunchbox delivery." },
-    { title: "Gampang Enak", category: "Food & Beverage", url: "services.html#gampangenak", desc: "Convenient and flavorful fast-casual comfort meals for modern professionals." },
+    { title: "Dapur Satelit & Catering Brown Sugar", category: "Food & Beverage", url: "service-detail.html?id=cateringbrownsugar", desc: "Bespoke corporate event catering, banquets, and buffet culinary service." },
+    { title: "Kals Maison Bakery", category: "Food & Beverage", url: "service-detail.html?id=kallsmaison", desc: "Artisanal pastries, French bakery delicacies, and signature coffee." },
+    { title: "Skywatch Resto", category: "Food & Beverage", url: "service-detail.html?id=skywatchresto", desc: "Rooftop panoramic dining with sky views and international cuisine." },
+    { title: "Betterfly Rooftop Cafe", category: "Food & Beverage", url: "service-detail.html?id=technocoffee", desc: "Specialty roasted coffee bar crafted for productive workdays." },
+    { title: "Jayanti Coffee & Eatery", category: "Food & Beverage", url: "service-detail.html?id=frozenfood", desc: "Ready-to-cook gourmet packaged meals and hygienic frozen delicacies." },
+    { title: "Santapin Mealbox", category: "Food & Beverage", url: "service-detail.html?id=santapin", desc: "Daily nutritious meals and corporate lunchbox delivery." },
+    { title: "Gampang Enak Food Hub", category: "Food & Beverage", url: "service-detail.html?id=gampangenak", desc: "Convenient and flavorful fast-casual comfort meals for modern professionals." },
 
     // Profile & Company
     { title: "Profil dan Sejarah", category: "Profile", url: "history.html", desc: "Pioneering the intersection of architecture, technology, and human experience." },
